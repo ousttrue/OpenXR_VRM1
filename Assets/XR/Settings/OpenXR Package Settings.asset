@@ -35,6 +35,8 @@ MonoBehaviour:
   features:
   - {fileID: 2600413990285401549}
   - {fileID: 6106685181994740932}
+  - {fileID: -1316151120199725585}
+  - {fileID: -2993982444574683523}
   - {fileID: -3321686995878956161}
   - {fileID: 3857421739526020276}
   - {fileID: -3599762191033199238}
@@ -45,6 +47,93 @@ MonoBehaviour:
   - {fileID: 1995043316566369967}
   m_renderMode: 1
   m_depthSubmissionMode: 0
+--- !u!114 &-7159533320967124573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f07cb757504bab4caf0daaad9ac6c72, type: 3}
+  m_Name: HandTrackingMeshFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  <failedInitialization>k__BackingField: 0
+  nameUi: hand tracking
+  version: 0.1.0
+  featureIdInternal: com.vrmc.ext_hand_tracking
+  openxrExtensionStrings: XR_hand_tracking_mesh
+  company: VRMC
+  priority: 0
+  required: 0
+  instance_: 0
+  session_: 0
+--- !u!114 &-6477396742683817524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a889eab8ed9873841abcc04dcf24637b, type: 3}
+  m_Name: FrameTimeFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  <failedInitialization>k__BackingField: 0
+  nameUi: Frame time
+  version: 0.0.1
+  featureIdInternal: com.joemarshall.frametime
+  openxrExtensionStrings: 
+  company: Joe M
+  priority: 0
+  required: 0
+  frame_time: 0
+--- !u!114 &-6110646088449881823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a889eab8ed9873841abcc04dcf24637b, type: 3}
+  m_Name: FrameTimeFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  <failedInitialization>k__BackingField: 0
+  nameUi: Frame time
+  version: 0.0.1
+  featureIdInternal: com.joemarshall.frametime
+  openxrExtensionStrings: 
+  company: Joe M
+  priority: 0
+  required: 0
+  frame_time: 0
+--- !u!114 &-5951048803377158039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbdd519685303474091c656f931a6f7e, type: 3}
+  m_Name: HandTrackingFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: ext_hand_tracking
+  version: 0.1.0
+  featureIdInternal: com.joemarshall.handtracking
+  openxrExtensionStrings: XR_EXT_hand_tracking
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &-5375596013745745416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +172,26 @@ MonoBehaviour:
   featureIdInternal: com.unity.openxr.feature.input.oculustouch
   openxrExtensionStrings: 
   company: Unity
+  priority: 0
+  required: 0
+--- !u!114 &-4021238342756705032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FrameStateFeature Android
+  m_EditorClassIdentifier: Assembly-CSharp:openxr:FrameStateFeature
+  m_enabled: 0
+  nameUi: 
+  version: 
+  featureIdInternal: 
+  openxrExtensionStrings: 
+  company: 
   priority: 0
   required: 0
 --- !u!114 &-3599762191033199238
@@ -145,6 +254,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-2993982444574683523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbdd519685303474091c656f931a6f7e, type: 3}
+  m_Name: HandTrackingFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: ext_hand_tracking
+  version: 0.1.0
+  featureIdInternal: com.joemarshall.handtracking
+  openxrExtensionStrings: XR_EXT_hand_tracking
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &-2809995876302111369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +295,26 @@ MonoBehaviour:
   priority: 0
   required: 0
   ignoreValidationErrors: 0
+--- !u!114 &-1316151120199725585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa3d88cbefdfdb4b951bc879d5fa7ea, type: 3}
+  m_Name: FrameStateFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: xrFrameState
+  version: 0.1.0
+  featureIdInternal: com.VRMC.frameTime
+  openxrExtensionStrings: 
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &-1295350434354999882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +351,26 @@ MonoBehaviour:
   Values:
   - {fileID: -7319471141126271782}
   - {fileID: 7796469836042378828}
+--- !u!114 &103198816123108753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: FrameStateFeature Standalone
+  m_EditorClassIdentifier: Assembly-CSharp:openxr:FrameStateFeature
+  m_enabled: 0
+  nameUi: frame state
+  version: 0.1.0
+  featureIdInternal: com.VRMC.frame_time
+  openxrExtensionStrings: 
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &1897846336074149155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6bfdbcb316ed242b30a8798c9eb853, type: 3}
   m_Name: KHRSimpleControllerProfile Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 0
+  m_enabled: 1
   nameUi: Khronos Simple Controller Profile
   version: 0.0.1
   featureIdInternal: com.unity.openxr.feature.input.khrsimpleprofile
@@ -387,6 +556,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &6389328168813206184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa3d88cbefdfdb4b951bc879d5fa7ea, type: 3}
+  m_Name: FrameStateFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: xrFrameState
+  version: 0.1.0
+  featureIdInternal: com.VRMC.frameTime
+  openxrExtensionStrings: 
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &6619667947319817729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -424,6 +613,8 @@ MonoBehaviour:
   features:
   - {fileID: 4940674759226019450}
   - {fileID: 1897846336074149155}
+  - {fileID: 6389328168813206184}
+  - {fileID: -5951048803377158039}
   - {fileID: -5375596013745745416}
   - {fileID: -1295350434354999882}
   - {fileID: -2809995876302111369}
@@ -432,3 +623,26 @@ MonoBehaviour:
   - {fileID: 5883130661500401605}
   m_renderMode: 1
   m_depthSubmissionMode: 0
+--- !u!114 &9100854377996474821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f07cb757504bab4caf0daaad9ac6c72, type: 3}
+  m_Name: HandTrackingMeshFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  <failedInitialization>k__BackingField: 0
+  nameUi: hand tracking
+  version: 0.1.0
+  featureIdInternal: com.vrmc.ext_hand_tracking
+  openxrExtensionStrings: XR_hand_tracking_mesh
+  company: VRMC
+  priority: 0
+  required: 0
+  instance_: 0
+  session_: 0

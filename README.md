@@ -6,3 +6,8 @@
 - check `Open XR`. enable the backends => YES
 ### XR camera rig
 - scene: convert main camera to XR rig
+- Position: 0, 0, 0
+- floor
+## Feature
+- enable FrameStateFeature
+- enable HandTrackingFeature
