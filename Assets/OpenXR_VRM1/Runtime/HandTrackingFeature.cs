@@ -20,7 +20,7 @@ namespace openxr
 #endif
     public class HandTrackingFeature : OpenXRFeature
     {
-        public const string featureId = "com.joemarshall.handtracking";
+        public const string featureId = "com.vrmc.hand_tracking";
         public const string xr_extension = "XR_EXT_hand_tracking";
         public const int XR_HAND_JOINT_COUNT_EXT = 26;
 

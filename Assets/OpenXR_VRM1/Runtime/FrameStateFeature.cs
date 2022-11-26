@@ -24,7 +24,7 @@ namespace openxr
 #endif
     public class FrameStateFeature : OpenXRFeature
     {
-        public const string featureId = "com.VRMC.frameTime";
+        public const string featureId = "com.vrmc.frame_time";
 
         PFN_xrGetInstanceProcAddr mOldProc;
 
