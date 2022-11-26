@@ -12,8 +12,8 @@ public class HandJointsVisualizer : MonoBehaviour
     FrameStateFeature frameState_;
 
     HandTrackingFeature handTracking_;
-    HandTrackingFeature.Tracker leftHandTracker_;
-    HandTrackingFeature.Tracker rightHandTracker_;
+    HandTrackingTracker leftHandTracker_;
+    HandTrackingTracker rightHandTracker_;
 
     HandJoints drawLeftHand_;
     HandJoints drawRightHand_;
@@ -52,7 +52,7 @@ public class HandJointsVisualizer : MonoBehaviour
         handTracking_.SessionEnd += HandEnd;
     }
 
-    void HandBegin(HandTrackingFeature.Tracker left, HandTrackingFeature.Tracker right)
+    void HandBegin(HandTrackingTracker left, HandTrackingTracker right)
     {
         Debug.Log("HandBegin");
         leftHandTracker_ = left;

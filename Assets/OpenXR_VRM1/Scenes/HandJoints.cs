@@ -30,7 +30,7 @@ class HandJoints : IDisposable
         }
     }
 
-    public void Update(long frameTime, HandTrackingFeature.Tracker tracker)
+    public void Update(long frameTime, openxr.HandTrackingTracker tracker)
     {
         if (tracker == null)
         {
