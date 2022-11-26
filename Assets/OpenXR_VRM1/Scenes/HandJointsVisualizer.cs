@@ -71,7 +71,7 @@ public class HandJointsVisualizer : MonoBehaviour
     {
         var frame = frameState_.FrameState;
         var time = frame.predictedDisplayTime;
-        drawLeftHand_.Draw(time, leftHandTracker_);
-        drawRightHand_.Draw(time, rightHandTracker_);
+        drawLeftHand_.Update(time, leftHandTracker_);
+        drawRightHand_.Update(time, rightHandTracker_);
     }
 }

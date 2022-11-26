@@ -30,7 +30,7 @@ class HandJoints : IDisposable
         }
     }
 
-    public void Draw(long frameTime, HandTrackingFeature.Tracker tracker)
+    public void Update(long frameTime, HandTrackingFeature.Tracker tracker)
     {
         if (tracker == null)
         {
