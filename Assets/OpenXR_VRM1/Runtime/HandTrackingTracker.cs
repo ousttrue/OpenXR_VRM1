@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.XR.OpenXR.Features;
 using static openxr.HandTrackingFeature;
 
 namespace openxr

@@ -1,5 +1,7 @@
 # OpenXR VRM-1.0 handtracking demo
 
+Based on <https://github.com/joemarshall/openxrhands>.
+
 ## Setup instrcutions
 ### Empty3D Project
 ### XR Plugin Management

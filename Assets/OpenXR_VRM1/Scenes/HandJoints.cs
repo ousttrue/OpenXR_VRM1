@@ -41,7 +41,7 @@ class HandJoints : IDisposable
             for (int i = 0; i < joints_.Length; ++i)
             {
                 var joint = joints_[i];
-                // objects_[i].localScale = new Vector3(joint.radius, joint.radius, joint.radius);
+                objects_[i].localScale = new Vector3(joint.radius, joint.radius, joint.radius);
 
                 // convert OpenXR right handed to unity left handed !
                 objects_[i].position = joint.pose.position.ToUnity();
