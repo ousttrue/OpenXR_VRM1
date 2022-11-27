@@ -187,7 +187,9 @@ namespace openxr
 
         public Quaternion ToUnity()
         {
-            return new Quaternion(x, y, -z, -w);
+            var q = new Quaternion(x, y, z, w);
+            q.ToAngleAxis(out var angle, out var axis);
+            return Quaternion.AngleAxis(-angle, new Vector3(axis.x, axis.y, -axis.z));
         }
     }
 
