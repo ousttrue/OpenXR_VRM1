@@ -207,6 +207,46 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.vrmc.gltf": {
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/UniGLTF#openxr_hand_rig",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.vrmc.vrmshaders": "0.107.0",
+        "com.unity.modules.animation": "1.0.0"
+      },
+      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+    },
+    "com.vrmc.univrm": {
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM#openxr_hand_rig",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.vrmc.vrmshaders": "0.107.0",
+        "com.vrmc.gltf": "0.107.0",
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+    },
+    "com.vrmc.vrm": {
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM10#openxr_hand_rig",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.vrmc.vrmshaders": "0.107.0",
+        "com.vrmc.gltf": "0.107.0"
+      },
+      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+    },
+    "com.vrmc.vrmshaders": {
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRMShaders#openxr_hand_rig",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.imageconversion": "1.0.0"
+      },
+      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

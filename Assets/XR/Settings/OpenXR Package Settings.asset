@@ -129,7 +129,7 @@ MonoBehaviour:
   m_enabled: 0
   nameUi: ext_hand_tracking
   version: 0.1.0
-  featureIdInternal: com.joemarshall.handtracking
+  featureIdInternal: com.vrmc.hand_tracking
   openxrExtensionStrings: XR_EXT_hand_tracking
   company: VRMC
   priority: 0
@@ -187,6 +187,7 @@ MonoBehaviour:
   m_Name: FrameStateFeature Android
   m_EditorClassIdentifier: Assembly-CSharp:openxr:FrameStateFeature
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: 
   version: 
   featureIdInternal: 
@@ -269,7 +270,7 @@ MonoBehaviour:
   m_enabled: 1
   nameUi: ext_hand_tracking
   version: 0.1.0
-  featureIdInternal: com.joemarshall.handtracking
+  featureIdInternal: com.vrmc.hand_tracking
   openxrExtensionStrings: XR_EXT_hand_tracking
   company: VRMC
   priority: 0
@@ -310,7 +311,7 @@ MonoBehaviour:
   m_enabled: 1
   nameUi: xrFrameState
   version: 0.1.0
-  featureIdInternal: com.VRMC.frameTime
+  featureIdInternal: com.vrmc.frame_time
   openxrExtensionStrings: 
   company: VRMC
   priority: 0
@@ -364,6 +365,7 @@ MonoBehaviour:
   m_Name: FrameStateFeature Standalone
   m_EditorClassIdentifier: Assembly-CSharp:openxr:FrameStateFeature
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: frame state
   version: 0.1.0
   featureIdInternal: com.VRMC.frame_time
@@ -571,7 +573,7 @@ MonoBehaviour:
   m_enabled: 0
   nameUi: xrFrameState
   version: 0.1.0
-  featureIdInternal: com.VRMC.frameTime
+  featureIdInternal: com.vrmc.frame_time
   openxrExtensionStrings: 
   company: VRMC
   priority: 0
