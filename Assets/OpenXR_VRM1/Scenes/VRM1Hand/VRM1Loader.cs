@@ -61,9 +61,7 @@ public class VRM1Loader : MonoBehaviour
     {
         // load vrm1
         var vrm10Instance = await Vrm10.LoadBytesAsync(VRM1Binary.bytes,
-            controlRigGenerationOption: ControlRigGenerationOption.Generate,
-            // create control rig for XR_EXT_hand_tracking
-            initialRotations: OpenXRHandTracking.InitialRotations);
+            controlRigGenerationOption: ControlRigGenerationOption.Vrm0XCompatibleWithXR_EXT_hand_tracking);
         if (vrm10Instance == null)
         {
             Debug.LogWarning("LoadPathAsync is null");

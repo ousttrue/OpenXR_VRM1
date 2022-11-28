@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.unity.collab-proxy": {
-      "version": "1.17.2",
+      "version": "1.17.6",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -86,7 +86,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.services.core": {
-      "version": "1.4.3",
+      "version": "1.5.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -208,17 +208,17 @@
       "url": "https://packages.unity.com"
     },
     "com.vrmc.gltf": {
-      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/UniGLTF#openxr_hand_rig",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#experimental_oxr_hand",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.vrmc.vrmshaders": "0.107.0",
         "com.unity.modules.animation": "1.0.0"
       },
-      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
     },
     "com.vrmc.univrm": {
-      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM#openxr_hand_rig",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#experimental_oxr_hand",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -226,26 +226,26 @@
         "com.vrmc.gltf": "0.107.0",
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
     },
     "com.vrmc.vrm": {
-      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM10#openxr_hand_rig",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#experimental_oxr_hand",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.vrmc.vrmshaders": "0.107.0",
         "com.vrmc.gltf": "0.107.0"
       },
-      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
     },
     "com.vrmc.vrmshaders": {
-      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRMShaders#openxr_hand_rig",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#experimental_oxr_hand",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.modules.imageconversion": "1.0.0"
       },
-      "hash": "a0d4621547a6c5a79c871505fa2de4cf6b6b1e21"
+      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

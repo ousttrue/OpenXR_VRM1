@@ -1,10 +1,6 @@
 {
   "dependencies": {
-    "com.vrmc.vrmshaders": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRMShaders#openxr_hand_rig",
-    "com.vrmc.gltf": "https://github.com/ousttrue/UniVRM.git?path=/Assets/UniGLTF#openxr_hand_rig",
-    "com.vrmc.univrm": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM#openxr_hand_rig",
-    "com.vrmc.vrm": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM10#openxr_hand_rig",
-    "com.unity.collab-proxy": "1.17.2",
+    "com.unity.collab-proxy": "1.17.6",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.15",
     "com.unity.ide.visualstudio": "2.0.16",
@@ -16,6 +12,10 @@
     "com.unity.visualscripting": "1.7.8",
     "com.unity.xr.management": "4.2.1",
     "com.unity.xr.openxr": "1.5.3",
+    "com.vrmc.gltf": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#experimental_oxr_hand",
+    "com.vrmc.univrm": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#experimental_oxr_hand",
+    "com.vrmc.vrm": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#experimental_oxr_hand",
+    "com.vrmc.vrmshaders": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#experimental_oxr_hand",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
