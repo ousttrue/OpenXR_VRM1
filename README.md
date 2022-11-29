@@ -2,6 +2,8 @@
 
 Based on <https://github.com/joemarshall/openxrhands>.
 
+[hand.webm](https://user-images.githubusercontent.com/68057/204517601-0b59e031-fb99-460a-a85b-aedbe941e8fc.webm)
+
 ## Setup instrcutions
 ### Empty3D Project
 ### XR Plugin Management

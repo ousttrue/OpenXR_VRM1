@@ -71,6 +71,8 @@ public class VRM1Loader : MonoBehaviour
         instance.ShowMeshes();
         instance.EnableUpdateWhenOffscreen();
 
+        instance.transform.SetParent(transform, false);
+
         vrm_ = instance.GetComponent<Vrm10Instance>();
         leftUpdater_ = new VRM1HandUpdater(vrm_, true);
         rightUpdater_ = new VRM1HandUpdater(vrm_, false);
