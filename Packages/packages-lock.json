@@ -208,17 +208,17 @@
       "url": "https://packages.unity.com"
     },
     "com.vrmc.gltf": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#experimental_oxr_hand",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#fix_oxr_hand_rig",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.vrmc.vrmshaders": "0.107.0",
         "com.unity.modules.animation": "1.0.0"
       },
-      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
+      "hash": "bd65b5f80578b2106420e28863eb5b17f4388bb9"
     },
     "com.vrmc.univrm": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#experimental_oxr_hand",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#fix_oxr_hand_rig",
       "depth": 0,
       "source": "git",
       "dependencies": {
@@ -226,26 +226,26 @@
         "com.vrmc.gltf": "0.107.0",
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
+      "hash": "bd65b5f80578b2106420e28863eb5b17f4388bb9"
     },
     "com.vrmc.vrm": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#experimental_oxr_hand",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#fix_oxr_hand_rig",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.vrmc.vrmshaders": "0.107.0",
         "com.vrmc.gltf": "0.107.0"
       },
-      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
+      "hash": "bd65b5f80578b2106420e28863eb5b17f4388bb9"
     },
     "com.vrmc.vrmshaders": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#experimental_oxr_hand",
+      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#fix_oxr_hand_rig",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.modules.imageconversion": "1.0.0"
       },
-      "hash": "8022372c72c4ce80e69faecd11f35275eb154505"
+      "hash": "bd65b5f80578b2106420e28863eb5b17f4388bb9"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
