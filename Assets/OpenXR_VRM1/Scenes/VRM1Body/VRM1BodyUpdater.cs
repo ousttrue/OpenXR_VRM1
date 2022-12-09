@@ -98,7 +98,7 @@ namespace Vrm10XR
         // Start is called before the first frame update
         async void Start()
         {
-            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes);
+            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes, ControlRigGenerationOption.Vrm0XCompatibleWithXR_FB_body_tracking);
             vrm_.transform.SetParent(transform, false);
         }
 
@@ -120,11 +120,15 @@ namespace Vrm10XR
                     {
                         if (vrm_.TryGetBoneTransform(b, out var bodyTransform))
                         {
-                            // hand is root. directory assign position
-                            bodyTransform.position = joint.pose.position.ToUnity();
+                            // directory assign position
+                            t.position = joint.pose.position.ToUnity();
                         }
                     }
                     t.rotation = joint.pose.orientation.ToUnity();
+                }
+                else
+                {
+                    Debug.LogWarning($"{b} is null");
                 }
             }
         }

@@ -72,7 +72,7 @@ namespace Vrm10XR
         // Start is called before the first frame update
         async void Start()
         {
-            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes);
+            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes, ControlRigGenerationOption.Vrm0XCompatibleWithXR_EXT_hand_tracking);
             vrm_.transform.SetParent(transform, false);
         }
 
