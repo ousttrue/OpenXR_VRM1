@@ -68,21 +68,7 @@ class VRM1HandUpdater : IDisposable
     {
     }
 
-    public void Update(long frameTime, ulong space, openxr.HandTracker tracker)
-    {
-        if (tracker == null)
-        {
-            return;
-        }
-
-        XrHandJointLocationEXT[] joints = default;
-        if (tracker.TryGetJoints(frameTime, space, out joints))
-        {
-            Update(joints, isLeft_ ? 0 : 1);
-        }
-    }
-
-    void Update(XrHandJointLocationEXT[] joints, int leftRight)
+    public void Update(XrHandJointLocationEXT[] joints, int leftRight)
     {
         foreach (var (i, j, b) in JointToBone)
         {

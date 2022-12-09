@@ -1,53 +1,35 @@
-
-using System;
 using openxr;
 using UnityEngine;
 
 
-class HandJoints : IDisposable
+class HandJoints : MonoBehaviour
 {
-    Transform[] objects_ = new Transform[openxr.HandTrackingFeature.XR_HAND_JOINT_COUNT_EXT];
+    Transform[] objects_;
 
-    public HandJoints(Transform parent, string prefix)
+    void Start()
     {
+        objects_ = new Transform[openxr.HandTrackingFeature.XR_HAND_JOINT_COUNT_EXT];
         for (int i = 0; i < HandTrackingFeature.XR_HAND_JOINT_COUNT_EXT; ++i)
         {
             var value = (HandTrackingFeature.XrHandJointEXT)i;
             var t = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
             t.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            t.name = $"{prefix}.{value}";
-            t.SetParent(parent);
+            t.name = $"{value}";
+            t.SetParent(transform);
             objects_[i] = t;
         }
     }
 
-    public void Dispose()
+    public void OnJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
     {
-        foreach (var joint in objects_)
+        for (int i = 0; i < joints.Length; ++i)
         {
-            GameObject.Destroy(joint);
-        }
-    }
+            var joint = joints[i];
+            objects_[i].localScale = new Vector3(joint.radius, joint.radius, joint.radius);
 
-    public void Update(long frameTime, ulong space, openxr.HandTracker tracker)
-    {
-        if (tracker == null)
-        {
-            return;
-        }
-
-        HandTrackingFeature.XrHandJointLocationEXT[] joints = default;
-        if (tracker.TryGetJoints(frameTime, space, out joints))
-        {
-            for (int i = 0; i < joints.Length; ++i)
-            {
-                var joint = joints[i];
-                objects_[i].localScale = new Vector3(joint.radius, joint.radius, joint.radius);
-
-                // convert OpenXR right handed to unity left handed !
-                objects_[i].position = joint.pose.position.ToUnity();
-                objects_[i].rotation = joint.pose.orientation.ToUnity();
-            }
+            // convert OpenXR right handed to unity left handed !
+            objects_[i].position = joint.pose.position.ToUnity();
+            objects_[i].rotation = joint.pose.orientation.ToUnity();
         }
     }
 }

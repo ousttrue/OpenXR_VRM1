@@ -1,10 +1,11 @@
 using openxr;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.OpenXR;
 
 
 [DisallowMultipleComponent]
-public class HandJointsVisualizer : MonoBehaviour
+public class HandTracking : MonoBehaviour
 {
     FrameTimeFeature frame_;
 
@@ -12,8 +13,11 @@ public class HandJointsVisualizer : MonoBehaviour
     HandTracker leftHandTracker_;
     HandTracker rightHandTracker_;
 
-    HandJoints leftHandJoints_;
-    HandJoints rightHandJoints_;
+    [SerializeField]
+    UnityEvent<HandTrackingFeature.XrHandJointLocationEXT[]> OnLeftJointUpdated;
+
+    [SerializeField]
+    UnityEvent<HandTrackingFeature.XrHandJointLocationEXT[]> OnRightJointUpdated;
 
     static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
     {
@@ -28,9 +32,6 @@ public class HandJointsVisualizer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leftHandJoints_ = new HandJoints(transform, "left");
-        rightHandJoints_ = new HandJoints(transform, "right");
-
         if (!TryGetFeature(out frame_))
         {
             this.enabled = false;
@@ -72,11 +73,19 @@ public class HandJointsVisualizer : MonoBehaviour
         var space = frame_.CurrentAppSpace;
         if (leftHandTracker_ != null)
         {
-            leftHandJoints_.Update(time, space, leftHandTracker_);
+            HandTrackingFeature.XrHandJointLocationEXT[] joints = default;
+            if (leftHandTracker_.TryGetJoints(time, space, out joints))
+            {
+                OnLeftJointUpdated.Invoke(joints);
+            }
         }
         if (rightHandTracker_ != null)
         {
-            rightHandJoints_.Update(time, space, rightHandTracker_);
+            HandTrackingFeature.XrHandJointLocationEXT[] joints = default;
+            if (rightHandTracker_.TryGetJoints(time, space, out joints))
+            {
+                OnRightJointUpdated.Invoke(joints);
+            }
         }
     }
 }

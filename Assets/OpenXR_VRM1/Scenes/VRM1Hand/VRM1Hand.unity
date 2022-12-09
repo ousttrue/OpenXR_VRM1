@@ -411,6 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1585082446}
+  - component: {fileID: 1585082448}
   - component: {fileID: 1585082447}
   m_Layer: 0
   m_Name: VRM1Loader
@@ -447,3 +448,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VRM1Binary: {fileID: 4900000, guid: f6257556ecfe2a44996c408093b79e0f, type: 3}
+--- !u!114 &1585082448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1585082445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3544ed0ac27dbc94090c0f5903e953af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLeftJointUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1585082447}
+        m_TargetAssemblyTypeName: VRM1Loader, VRM1Hand
+        m_MethodName: OnLeftJointsUpdated
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnRightJointUpdated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1585082447}
+        m_TargetAssemblyTypeName: VRM1Loader, VRM1Hand
+        m_MethodName: OnRightJointsUpdated
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
