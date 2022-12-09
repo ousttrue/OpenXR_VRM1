@@ -1,4 +1,4 @@
-using System;
+using openxr;
 using UnityEngine;
 using UniVRM10;
 using static openxr.HandTrackingFeature;
@@ -6,7 +6,7 @@ using static openxr.HandTrackingFeature;
 
 namespace Vrm10XR
 {
-    class VRM1HandUpdater : IDisposable
+    class VRM1HandUpdater : MonoBehaviour
     {
         static (int, XrHandJointEXT, HumanBodyBones)[] JointToBone = new (int, XrHandJointEXT, HumanBodyBones)[]
             {
@@ -56,7 +56,11 @@ namespace Vrm10XR
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_DISTAL_EXT, HumanBodyBones.RightLittleDistal),
             };
 
+        // rename .vrm to .txt and set
+        [SerializeField]
+        TextAsset VRM1Binary;
         Vrm10Instance vrm_;
+
         bool isLeft_;
 
         public VRM1HandUpdater(Vrm10Instance vrm, bool isLeft)
@@ -65,12 +69,30 @@ namespace Vrm10XR
             isLeft_ = isLeft;
         }
 
-        public void Dispose()
+        // Start is called before the first frame update
+        async void Start()
         {
+            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes);
+            vrm_.transform.SetParent(transform, false);
         }
 
-        public void Update(XrHandJointLocationEXT[] joints, int leftRight)
+        public void OnLeftJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
         {
+            Update(joints, 0);
+        }
+
+        public void OnRightJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
+        {
+            Update(joints, 1);
+        }
+
+        void Update(XrHandJointLocationEXT[] joints, int leftRight)
+        {
+            if (vrm_ == null)
+            {
+                return;
+            }
+
             foreach (var (i, j, b) in JointToBone)
             {
                 if (i != leftRight)
