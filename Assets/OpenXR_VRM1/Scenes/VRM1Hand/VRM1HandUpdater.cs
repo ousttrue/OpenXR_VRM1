@@ -1,14 +1,15 @@
-
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UniVRM10;
 using static openxr.HandTrackingFeature;
 
-class VRM1HandUpdater : IDisposable
+
+namespace Vrm10XR
 {
-    static (int, XrHandJointEXT, HumanBodyBones)[] JointToBone = new (int, XrHandJointEXT, HumanBodyBones)[]
-        {
+    class VRM1HandUpdater : IDisposable
+    {
+        static (int, XrHandJointEXT, HumanBodyBones)[] JointToBone = new (int, XrHandJointEXT, HumanBodyBones)[]
+            {
             // left
             // {(0, XrHandJointEXT.XR_HAND_JOINT_PALM_EXT), HumanBodyBones.LeftHand},
             (0, XrHandJointEXT.XR_HAND_JOINT_WRIST_EXT, HumanBodyBones.LeftHand),
@@ -53,43 +54,44 @@ class VRM1HandUpdater : IDisposable
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_PROXIMAL_EXT, HumanBodyBones.RightLittleProximal),
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_INTERMEDIATE_EXT, HumanBodyBones.RightLittleIntermediate),
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_DISTAL_EXT, HumanBodyBones.RightLittleDistal),
-        };
+            };
 
-    Vrm10Instance vrm_;
-    bool isLeft_;
+        Vrm10Instance vrm_;
+        bool isLeft_;
 
-    public VRM1HandUpdater(Vrm10Instance vrm, bool isLeft)
-    {
-        vrm_ = vrm;
-        isLeft_ = isLeft;
-    }
-
-    public void Dispose()
-    {
-    }
-
-    public void Update(XrHandJointLocationEXT[] joints, int leftRight)
-    {
-        foreach (var (i, j, b) in JointToBone)
+        public VRM1HandUpdater(Vrm10Instance vrm, bool isLeft)
         {
-            if (i != leftRight)
-            {
-                continue;
-            }
-            var joint = joints[(int)j];
+            vrm_ = vrm;
+            isLeft_ = isLeft;
+        }
 
-            var t = vrm_.Runtime.ControlRig.GetBoneTransform(b);
-            if (t != null)
+        public void Dispose()
+        {
+        }
+
+        public void Update(XrHandJointLocationEXT[] joints, int leftRight)
+        {
+            foreach (var (i, j, b) in JointToBone)
             {
-                if (j == XrHandJointEXT.XR_HAND_JOINT_WRIST_EXT)
+                if (i != leftRight)
                 {
-                    if (vrm_.TryGetBoneTransform(b, out var handTransform))
-                    {
-                        // hand is root. directory assign position
-                        handTransform.position = joint.pose.position.ToUnity();
-                    }
+                    continue;
                 }
-                t.rotation = joint.pose.orientation.ToUnity();
+                var joint = joints[(int)j];
+
+                var t = vrm_.Runtime.ControlRig.GetBoneTransform(b);
+                if (t != null)
+                {
+                    if (j == XrHandJointEXT.XR_HAND_JOINT_WRIST_EXT)
+                    {
+                        if (vrm_.TryGetBoneTransform(b, out var handTransform))
+                        {
+                            // hand is root. directory assign position
+                            handTransform.position = joint.pose.position.ToUnity();
+                        }
+                    }
+                    t.rotation = joint.pose.orientation.ToUnity();
+                }
             }
         }
     }
