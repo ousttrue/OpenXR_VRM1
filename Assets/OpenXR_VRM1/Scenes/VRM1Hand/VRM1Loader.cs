@@ -12,10 +12,10 @@ public class VRM1Loader : MonoBehaviour
     Vrm10Instance vrm_;
 
     // openxr
-    FrameStateFeature frameState_;
+    FrameTimeFeature frame_;
     HandTrackingFeature handTracking_;
-    HandTrackingTracker leftHandTracker_;
-    HandTrackingTracker rightHandTracker_;
+    HandTracker leftHandTracker_;
+    HandTracker rightHandTracker_;
 
     HandJoints leftJoints_;
     VRM1HandUpdater leftUpdater_;
@@ -35,7 +35,7 @@ public class VRM1Loader : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!TryGetFeature(out frameState_))
+        if (!TryGetFeature(out frame_))
         {
             this.enabled = false;
             Debug.LogError("fail to get frameState_");
@@ -78,15 +78,17 @@ public class VRM1Loader : MonoBehaviour
         rightUpdater_ = new VRM1HandUpdater(vrm_, false);
     }
 
-    void HandBegin(HandTrackingTracker left, HandTrackingTracker right)
+    void HandBegin(HandTrackingFeature feature, ulong session)
     {
-        leftHandTracker_ = left;
-        rightHandTracker_ = right;
+        leftHandTracker_ = HandTracker.CreateTracker(feature, session, HandTrackingFeature.XrHandEXT.XR_HAND_LEFT_EXT);
+        rightHandTracker_ = HandTracker.CreateTracker(feature, session, HandTrackingFeature.XrHandEXT.XR_HAND_RIGHT_EXT);
     }
 
     void HandEnd()
     {
+        leftHandTracker_.Dispose();
         leftHandTracker_ = null;
+        rightHandTracker_.Dispose();
         rightHandTracker_ = null;
     }
 
@@ -97,12 +99,17 @@ public class VRM1Loader : MonoBehaviour
         {
             return;
         }
-        var frame = frameState_.FrameState;
-        var time = frame.predictedDisplayTime;
-
-        leftJoints_.Update(time, leftHandTracker_);
-        leftUpdater_.Update(time, leftHandTracker_);
-        rightJoints_.Update(time, rightHandTracker_);
-        rightUpdater_.Update(time, rightHandTracker_);
+        var time = frame_.FrameTime;
+        var space = frame_.CurrentAppSpace;
+        if (leftHandTracker_ != null)
+        {
+            leftJoints_.Update(time, space, leftHandTracker_);
+            leftUpdater_.Update(time, space, leftHandTracker_);
+        }
+        if (rightHandTracker_ != null)
+        {
+            rightJoints_.Update(time, space, rightHandTracker_);
+            rightUpdater_.Update(time, space, rightHandTracker_);
+        }
     }
 }

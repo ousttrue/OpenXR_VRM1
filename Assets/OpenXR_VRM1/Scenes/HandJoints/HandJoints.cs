@@ -29,7 +29,7 @@ class HandJoints : IDisposable
         }
     }
 
-    public void Update(long frameTime, openxr.HandTrackingTracker tracker)
+    public void Update(long frameTime, ulong space, openxr.HandTracker tracker)
     {
         if (tracker == null)
         {
@@ -37,7 +37,7 @@ class HandJoints : IDisposable
         }
 
         HandTrackingFeature.XrHandJointLocationEXT[] joints = default;
-        if (tracker.TryGetJoints(frameTime, out joints))
+        if (tracker.TryGetJoints(frameTime, space, out joints))
         {
             for (int i = 0; i < joints.Length; ++i)
             {

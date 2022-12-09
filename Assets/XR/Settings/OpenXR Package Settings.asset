@@ -35,7 +35,7 @@ MonoBehaviour:
   features:
   - {fileID: 2600413990285401549}
   - {fileID: 6106685181994740932}
-  - {fileID: -1316151120199725585}
+  - {fileID: -3215108077903657773}
   - {fileID: -2993982444574683523}
   - {fileID: -3321686995878956161}
   - {fileID: 3857421739526020276}
@@ -127,11 +127,11 @@ MonoBehaviour:
   m_Name: HandTrackingFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: ext_hand_tracking
-  version: 0.1.0
-  featureIdInternal: com.vrmc.hand_tracking
+  nameUi: Hand tracking Extension
+  version: 0.0.1
+  featureIdInternal: com.joemarshall.handtracking
   openxrExtensionStrings: XR_EXT_hand_tracking
-  company: VRMC
+  company: Joe M
   priority: 0
   required: 0
 --- !u!114 &-5375596013745745416
@@ -235,6 +235,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-3215108077903657773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae9f0eed529ca141a5b5edd82e5ed55, type: 3}
+  m_Name: FrameTimeFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: Frame time
+  version: 0.0.1
+  featureIdInternal: com.joemarshall.frametime
+  openxrExtensionStrings: 
+  company: Joe M
+  priority: 0
+  required: 0
 --- !u!114 &-3060524684698381238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,11 +288,11 @@ MonoBehaviour:
   m_Name: HandTrackingFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
-  nameUi: ext_hand_tracking
-  version: 0.1.0
-  featureIdInternal: com.vrmc.hand_tracking
+  nameUi: Hand tracking Extension
+  version: 0.0.1
+  featureIdInternal: com.joemarshall.handtracking
   openxrExtensionStrings: XR_EXT_hand_tracking
-  company: VRMC
+  company: Joe M
   priority: 0
   required: 0
 --- !u!114 &-2809995876302111369
@@ -309,6 +329,7 @@ MonoBehaviour:
   m_Name: FrameStateFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: xrFrameState
   version: 0.1.0
   featureIdInternal: com.vrmc.frame_time
@@ -496,6 +517,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &4403095223282766105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae9f0eed529ca141a5b5edd82e5ed55, type: 3}
+  m_Name: FrameTimeFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Frame time
+  version: 0.0.1
+  featureIdInternal: com.joemarshall.frametime
+  openxrExtensionStrings: 
+  company: Joe M
+  priority: 0
+  required: 0
 --- !u!114 &4940674759226019450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +612,7 @@ MonoBehaviour:
   m_Name: FrameStateFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: xrFrameState
   version: 0.1.0
   featureIdInternal: com.vrmc.frame_time
@@ -615,7 +657,7 @@ MonoBehaviour:
   features:
   - {fileID: 4940674759226019450}
   - {fileID: 1897846336074149155}
-  - {fileID: 6389328168813206184}
+  - {fileID: 4403095223282766105}
   - {fileID: -5951048803377158039}
   - {fileID: -5375596013745745416}
   - {fileID: -1295350434354999882}
