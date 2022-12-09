@@ -12,9 +12,7 @@ namespace openxr
     /// </summary>
     /// <value></value>
 #if UNITY_EDITOR
-    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = "xrFrameState",
-        BuildTargetGroups = new[] {
-            UnityEditor.BuildTargetGroup.Standalone, UnityEditor.BuildTargetGroup.WSA, UnityEditor.BuildTargetGroup.Android },
+    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = "Frame time",
         Company = "VRMC",
         FeatureId = featureId,
         Version = "0.1.0",
@@ -22,7 +20,7 @@ namespace openxr
         DocumentationLink = "https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.5/manual/index.html"
         )]
 #endif
-    public class FrameStateFeature : OpenXRFeature
+    public class FrameTimeFeature : OpenXRFeature
     {
         public const string featureId = "com.vrmc.frame_time";
 
@@ -49,7 +47,7 @@ namespace openxr
             XrBool32           shouldRender;
         } XrFrameState;*/
         [StructLayout(LayoutKind.Sequential)]
-        public struct XrFrameState
+        internal struct XrFrameState
         {
             int stype;
             IntPtr next;
@@ -65,8 +63,8 @@ namespace openxr
         internal delegate int Type_xrWaitFrame(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state);
         Type_xrWaitFrame mOldWaitFrame;
 
-        XrFrameState state_;
-        public XrFrameState FrameState => state_;
+        long frame_time = 0;
+        public long FrameTime => frame_time;
         List<Delegate> callbacks = new List<Delegate>();
 
         [MonoPInvokeCallback(typeof(PFN_xrGetInstanceProcAddr))]
@@ -108,8 +106,7 @@ namespace openxr
         int xrWaitFrame_HOOK(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state)
         {
             int retVal = mOldWaitFrame(session, waitInfo, ref state);
-            // copy
-            state_ = state;
+            frame_time = state.predictedDisplayTime;
             return retVal;
         }
 
@@ -119,5 +116,7 @@ namespace openxr
                 xrGetInstanceProcAddr);
             return GetCallback(new PFN_xrGetInstanceProcAddr(xrGetInstanceProcAddr_HOOK_STATIC));
         }
+
+        public ulong CurrentAppSpace => OpenXRFeature.GetCurrentAppSpace();
     }
 }

@@ -1,14 +1,15 @@
-
-using System;
-using System.Collections.Generic;
+using openxr;
 using UnityEngine;
 using UniVRM10;
 using static openxr.HandTrackingFeature;
 
-class VRM1HandUpdater : IDisposable
+
+namespace Vrm10XR
 {
-    static (int, XrHandJointEXT, HumanBodyBones)[] JointToBone = new (int, XrHandJointEXT, HumanBodyBones)[]
-        {
+    class VRM1HandUpdater : MonoBehaviour
+    {
+        static (int, XrHandJointEXT, HumanBodyBones)[] JointToBone = new (int, XrHandJointEXT, HumanBodyBones)[]
+            {
             // left
             // {(0, XrHandJointEXT.XR_HAND_JOINT_PALM_EXT), HumanBodyBones.LeftHand},
             (0, XrHandJointEXT.XR_HAND_JOINT_WRIST_EXT, HumanBodyBones.LeftHand),
@@ -53,57 +54,66 @@ class VRM1HandUpdater : IDisposable
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_PROXIMAL_EXT, HumanBodyBones.RightLittleProximal),
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_INTERMEDIATE_EXT, HumanBodyBones.RightLittleIntermediate),
             (1, XrHandJointEXT.XR_HAND_JOINT_LITTLE_DISTAL_EXT, HumanBodyBones.RightLittleDistal),
-        };
+            };
 
-    Vrm10Instance vrm_;
-    bool isLeft_;
+        // rename .vrm to .txt and set
+        [SerializeField]
+        TextAsset VRM1Binary;
+        Vrm10Instance vrm_;
 
-    public VRM1HandUpdater(Vrm10Instance vrm, bool isLeft)
-    {
-        vrm_ = vrm;
-        isLeft_ = isLeft;
-    }
+        bool isLeft_;
 
-    public void Dispose()
-    {
-    }
-
-    public void Update(long frameTime, openxr.HandTrackingTracker tracker)
-    {
-        if (tracker == null)
+        public VRM1HandUpdater(Vrm10Instance vrm, bool isLeft)
         {
-            return;
+            vrm_ = vrm;
+            isLeft_ = isLeft;
         }
 
-        XrHandJointLocationEXT[] joints = default;
-        if (tracker.TryGetJoints(frameTime, out joints))
+        // Start is called before the first frame update
+        async void Start()
         {
-            Update(joints, isLeft_ ? 0 : 1);
+            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes, ControlRigGenerationOption.Vrm0XCompatibleWithXR_EXT_hand_tracking);
+            vrm_.transform.SetParent(transform, false);
         }
-    }
 
-    void Update(XrHandJointLocationEXT[] joints, int leftRight)
-    {
-        foreach (var (i, j, b) in JointToBone)
+        public void OnLeftJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
         {
-            if (i != leftRight)
+            Update(joints, 0);
+        }
+
+        public void OnRightJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
+        {
+            Update(joints, 1);
+        }
+
+        void Update(XrHandJointLocationEXT[] joints, int leftRight)
+        {
+            if (vrm_ == null)
             {
-                continue;
+                return;
             }
-            var joint = joints[(int)j];
 
-            var t = vrm_.Runtime.ControlRig.GetBoneTransform(b);
-            if (t != null)
+            foreach (var (i, j, b) in JointToBone)
             {
-                if (j == XrHandJointEXT.XR_HAND_JOINT_WRIST_EXT)
+                if (i != leftRight)
                 {
-                    if (vrm_.TryGetBoneTransform(b, out var handTransform))
-                    {
-                        // hand is root. directory assign position
-                        handTransform.position = joint.pose.position.ToUnity();
-                    }
+                    continue;
                 }
-                t.rotation = joint.pose.orientation.ToUnity();
+                var joint = joints[(int)j];
+
+                var t = vrm_.Runtime.ControlRig.GetBoneTransform(b);
+                if (t != null)
+                {
+                    if (j == XrHandJointEXT.XR_HAND_JOINT_WRIST_EXT)
+                    {
+                        if (vrm_.TryGetBoneTransform(b, out var handTransform))
+                        {
+                            // hand is root. directory assign position
+                            handTransform.position = joint.pose.position.ToUnity();
+                        }
+                    }
+                    t.rotation = joint.pose.orientation.ToUnity();
+                }
             }
         }
     }

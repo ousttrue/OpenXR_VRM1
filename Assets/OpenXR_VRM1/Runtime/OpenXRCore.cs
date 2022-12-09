@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace openxr
 {
-    internal enum XrResult
+    public enum XrResult
     {
         XR_SUCCESS = 0,
         XR_TIMEOUT_EXPIRED = 1,
@@ -125,7 +125,8 @@ namespace openxr
         XR_RESULT_MAX_ENUM = 0x7FFFFFFF
     }
 
-    internal enum XrSpaceLocationFlags : int
+    [Flags]
+    public enum XrSpaceLocationFlags : Int64
     {
         XR_SPACE_LOCATION_ORIENTATION_VALID_BIT = 0x00000001,
         XR_SPACE_LOCATION_POSITION_VALID_BIT = 0x00000002,
@@ -165,6 +166,11 @@ namespace openxr
         public float y;
         public float z;
 
+        public override string ToString()
+        {
+            return $"[{x:0.00}, {y:0.00}, {z:0.00}]";
+        }
+
         public Vector3 ToUnity()
         {
             return new Vector3(x, y, -z);
@@ -185,9 +191,14 @@ namespace openxr
         public float z;
         public float w;
 
+        public override string ToString()
+        {
+            return $"[{x:0.00}, {y:0.00}, {z:0.00}, {w:0.00}]";
+        }
+
         public Quaternion ToUnity()
         {
-            return new Quaternion(-x, -y, z, w);
+            return new Quaternion(x, y, -z, -w);
         }
     }
 
@@ -200,5 +211,42 @@ namespace openxr
     {
         public XrVector4f orientation;
         public XrVector3f position;
+
+        public override string ToString()
+        {
+            return $"<{orientation} {position}>";
+        }
     }
+
+    public enum XrReferenceSpaceType
+    {
+        XR_REFERENCE_SPACE_TYPE_VIEW = 1,
+        XR_REFERENCE_SPACE_TYPE_LOCAL = 2,
+        XR_REFERENCE_SPACE_TYPE_STAGE = 3,
+        // Provided by XR_MSFT_unbounded_reference_space
+        XR_REFERENCE_SPACE_TYPE_UNBOUNDED_MSFT = 1000038000,
+        // Provided by XR_VARJO_foveated_rendering
+        XR_REFERENCE_SPACE_TYPE_COMBINED_EYE_VARJO = 1000121000,
+        XR_REFERENCE_SPACE_TYPE_MAX_ENUM = 0x7FFFFFFF
+    }
+
+    /*typedef struct XrReferenceSpaceCreateInfo {
+        XrStructureType         type;
+        const void*             next;
+        XrReferenceSpaceType    referenceSpaceType;
+        XrPosef                 poseInReferenceSpace;
+    } XrReferenceSpaceCreateInfo;*/
+    [StructLayout(LayoutKind.Sequential)]
+    public struct XrReferenceSpaceCreateInfo
+    {
+        public XrStructureType type;
+        public IntPtr next;
+        public XrReferenceSpaceType referenceSpaceType;
+        public XrPosef poseInReferenceSpace;
+    };
+
+    public delegate XrResult Type_xrCreateReferenceSpace(
+        ulong session,
+        in XrReferenceSpaceCreateInfo createInfo,
+        ref ulong space);
 }

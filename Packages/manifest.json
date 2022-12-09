@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "com.vrmc.gltf": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#fix_oxr_hand_rig_LR",
-    "com.vrmc.univrm": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#fix_oxr_hand_rig_LR",
-    "com.vrmc.vrm": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#fix_oxr_hand_rig_LR",
-    "com.vrmc.vrmshaders": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#fix_oxr_hand_rig_LR",
+    "com.vrmc.gltf": "https://github.com/ousttrue/UniVRM.git?path=/Assets/UniGLTF#fix_oxr_body",
+    "com.vrmc.univrm": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM#fix_oxr_body",
+    "com.vrmc.vrm": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM10#fix_oxr_body",
+    "com.vrmc.vrmshaders": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRMShaders#fix_oxr_body",
     "com.unity.collab-proxy": "1.17.6",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.15",

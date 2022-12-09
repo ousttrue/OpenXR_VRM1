@@ -1,5 +1,25 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8467827824496580374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6312658cd2061ba4cb579b5c3e7f04b8, type: 3}
+  m_Name: BodyTrackingFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Body tracking Extension
+  version: 0.0.1
+  featureIdInternal: com.ousttrue.bodytracking
+  openxrExtensionStrings: XR_FB_body_tracking
+  company: ousttrue
+  priority: 0
+  required: 0
 --- !u!114 &-7681721955874433736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,9 +53,10 @@ MonoBehaviour:
   m_Name: Standalone
   m_EditorClassIdentifier: 
   features:
+  - {fileID: 8588410318514220060}
   - {fileID: 2600413990285401549}
   - {fileID: 6106685181994740932}
-  - {fileID: -1316151120199725585}
+  - {fileID: -3215108077903657773}
   - {fileID: -2993982444574683523}
   - {fileID: -3321686995878956161}
   - {fileID: 3857421739526020276}
@@ -235,6 +256,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-3215108077903657773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae9f0eed529ca141a5b5edd82e5ed55, type: 3}
+  m_Name: FrameTimeFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: Frame time
+  version: 0.1.0
+  featureIdInternal: com.vrmc.frame_time
+  openxrExtensionStrings: 
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &-3060524684698381238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +350,7 @@ MonoBehaviour:
   m_Name: FrameStateFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: xrFrameState
   version: 0.1.0
   featureIdInternal: com.vrmc.frame_time
@@ -496,6 +538,26 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &4403095223282766105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae9f0eed529ca141a5b5edd82e5ed55, type: 3}
+  m_Name: FrameTimeFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Frame time
+  version: 0.1.0
+  featureIdInternal: com.vrmc.frame_time
+  openxrExtensionStrings: 
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &4940674759226019450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +633,7 @@ MonoBehaviour:
   m_Name: FrameStateFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: xrFrameState
   version: 0.1.0
   featureIdInternal: com.vrmc.frame_time
@@ -613,9 +676,10 @@ MonoBehaviour:
   m_Name: Android
   m_EditorClassIdentifier: 
   features:
+  - {fileID: -8467827824496580374}
   - {fileID: 4940674759226019450}
   - {fileID: 1897846336074149155}
-  - {fileID: 6389328168813206184}
+  - {fileID: 4403095223282766105}
   - {fileID: -5951048803377158039}
   - {fileID: -5375596013745745416}
   - {fileID: -1295350434354999882}
@@ -625,6 +689,26 @@ MonoBehaviour:
   - {fileID: 5883130661500401605}
   m_renderMode: 1
   m_depthSubmissionMode: 0
+--- !u!114 &8588410318514220060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6312658cd2061ba4cb579b5c3e7f04b8, type: 3}
+  m_Name: BodyTrackingFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: Body tracking Extension
+  version: 0.0.1
+  featureIdInternal: com.ousttrue.bodytracking
+  openxrExtensionStrings: XR_FB_body_tracking
+  company: ousttrue
+  priority: 0
+  required: 0
 --- !u!114 &9100854377996474821
 MonoBehaviour:
   m_ObjectHideFlags: 0

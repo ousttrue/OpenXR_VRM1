@@ -217,44 +217,44 @@
       "url": "https://packages.unity.com"
     },
     "com.vrmc.gltf": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#fix_oxr_hand_rig_LR",
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/UniGLTF#fix_oxr_body",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.vrmc.vrmshaders": "0.107.0",
+        "com.vrmc.vrmshaders": "0.108.0",
         "com.unity.modules.animation": "1.0.0"
       },
-      "hash": "84db84bc2e8e27d0abe8ec3e02c236ef6332e7c2"
+      "hash": "3e5535cb72d80e10b28075b92b3ebebd3f7c67d1"
     },
     "com.vrmc.univrm": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#fix_oxr_hand_rig_LR",
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM#fix_oxr_body",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.vrmc.vrmshaders": "0.107.0",
-        "com.vrmc.gltf": "0.107.0",
+        "com.vrmc.vrmshaders": "0.108.0",
+        "com.vrmc.gltf": "0.108.0",
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "84db84bc2e8e27d0abe8ec3e02c236ef6332e7c2"
+      "hash": "3e5535cb72d80e10b28075b92b3ebebd3f7c67d1"
     },
     "com.vrmc.vrm": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#fix_oxr_hand_rig_LR",
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM10#fix_oxr_body",
       "depth": 0,
       "source": "git",
       "dependencies": {
-        "com.vrmc.vrmshaders": "0.107.0",
-        "com.vrmc.gltf": "0.107.0"
+        "com.vrmc.vrmshaders": "0.108.0",
+        "com.vrmc.gltf": "0.108.0"
       },
-      "hash": "84db84bc2e8e27d0abe8ec3e02c236ef6332e7c2"
+      "hash": "3e5535cb72d80e10b28075b92b3ebebd3f7c67d1"
     },
     "com.vrmc.vrmshaders": {
-      "version": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#fix_oxr_hand_rig_LR",
+      "version": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRMShaders#fix_oxr_body",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.modules.imageconversion": "1.0.0"
       },
-      "hash": "84db84bc2e8e27d0abe8ec3e02c236ef6332e7c2"
+      "hash": "3e5535cb72d80e10b28075b92b3ebebd3f7c67d1"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",
