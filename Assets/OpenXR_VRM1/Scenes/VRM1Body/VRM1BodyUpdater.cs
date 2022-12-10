@@ -100,6 +100,9 @@ namespace Vrm10XR
         {
             vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes, ControlRigGenerationOption.Vrm0XCompatibleWithXR_FB_body_tracking);
             vrm_.transform.SetParent(transform, false);
+
+            // VR用 FirstPerson 設定
+            await vrm_.Vrm.FirstPerson.SetupAsync(vrm_.gameObject, new VRMShaders.RuntimeOnlyAwaitCaller());
         }
 
         public void OnJointsUpdated(BodyTrackingFeature.XrBodyJointLocationFB[] joints)
