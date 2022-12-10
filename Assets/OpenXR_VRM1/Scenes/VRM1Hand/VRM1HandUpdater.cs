@@ -78,15 +78,15 @@ namespace Vrm10XR
 
         public void OnLeftJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
         {
-            Update(joints, 0);
+            UpdateJoints(joints, 0);
         }
 
         public void OnRightJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
         {
-            Update(joints, 1);
+            UpdateJoints(joints, 1);
         }
 
-        void Update(XrHandJointLocationEXT[] joints, int leftRight)
+        void UpdateJoints(XrHandJointLocationEXT[] joints, int leftRight)
         {
             if (vrm_ == null)
             {
