@@ -14,7 +14,7 @@ namespace openxr
             UnityEditor.BuildTargetGroup.Standalone, UnityEditor.BuildTargetGroup.Android },
         Company = "VRMC",
         Desc = "Enable body tracking in unity",
-        DocumentationLink = "https://developer.oculus.com/documentation/native/android/move-body-tracking/",
+        DocumentationLink = "https://developer.oculus.com/documentation/native/android/move-ref-body-joints/",
         OpenxrExtensionStrings = xr_extension,
         Version = "0.0.1",
         FeatureId = featureId)]

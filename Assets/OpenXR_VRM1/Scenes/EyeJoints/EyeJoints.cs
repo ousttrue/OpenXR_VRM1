@@ -27,6 +27,7 @@ namespace Vrm10XR
         {
             // goto main camera forward
             transform.position = Camera.main.transform.position + Camera.main.transform.forward;
+            transform.rotation = Camera.main.transform.rotation;
 
             // left and right
             for (int i = 0; i < gazes.Length; ++i)
@@ -36,11 +37,14 @@ namespace Vrm10XR
                 if (gaze.isValid)
                 {
                     // convert OpenXR right handed to unity left handed !
-                    var pos = gaze.gazePose.position.ToUnity();
-                    pos.y = 0;
-                    objects_[i].localPosition = pos;
+                    // var pos = gaze.gazePose.position.ToUnity();
+                    // pos.y = 0;
+                    // objects_[i].localPosition = pos;
 
-                    objects_[i].localRotation = gaze.gazePose.orientation.ToUnity();
+                    var rotation = gaze.gazePose.orientation.ToUnity();
+                    // to camera local
+                    var headLocal = Quaternion.Inverse(Camera.main.transform.rotation) * rotation;
+                    objects_[i].localRotation = headLocal;
                 }
                 else
                 {

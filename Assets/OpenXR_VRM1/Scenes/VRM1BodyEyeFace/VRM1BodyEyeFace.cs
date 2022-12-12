@@ -2,11 +2,11 @@ using openxr;
 using UnityEngine;
 using UniVRM10;
 using static openxr.BodyTrackingFeature;
-
+using static openxr.FaceTrackingFeature;
 
 namespace Vrm10XR
 {
-    class VRM1BodyUpdater : MonoBehaviour
+    class VRM1BodyEyeFace : MonoBehaviour
     {
         static (XrBodyJointFB, HumanBodyBones)[] JointToBone = new (XrBodyJointFB, HumanBodyBones)[]
             {
@@ -82,18 +82,33 @@ namespace Vrm10XR
             // (XrBodyJointFB.XR_BODY_JOINT_RIGHT_HAND_LITTLE_TIP_FB),
         };
 
+        static (XrFaceExpressionFB, ExpressionPreset)[] ExpressionMap = new (XrFaceExpressionFB, ExpressionPreset)[]
+        {
+            (XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_CLOSED_R_FB, ExpressionPreset.blinkRight),
+            (XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_CLOSED_L_FB, ExpressionPreset.blinkLeft),
+            (XrFaceExpressionFB.XR_FACE_EXPRESSION_JAW_DROP_FB, ExpressionPreset.aa),
+            //
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_UPPER_LID_RAISER_R_FB, ExpressionPreset.relaxed),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_UPPER_LID_RAISER_L_FB, ExpressionPreset.relaxed),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_CORNER_PULLER_L_FB, ExpressionPreset.happy),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_CORNER_PULLER_R_FB, ExpressionPreset.happy),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_CHIN_RAISER_B_FB, ExpressionPreset.angry),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_CHEEK_PUFF_R_FB, ExpressionPreset.angry),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_CHEEK_PUFF_L_FB, ExpressionPreset.angry),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_INNER_BROW_RAISER_R_FB, ExpressionPreset.sad),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_INNER_BROW_RAISER_L_FB, ExpressionPreset.sad),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_BROW_LOWERER_R_FB, ExpressionPreset.surprised),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_BROW_LOWERER_L_FB, ExpressionPreset.surprised),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_OUTER_BROW_RAISER_R_FB, ExpressionPreset.surprised),
+            // (XrFaceExpressionFB.XR_FACE_EXPRESSION_OUTER_BROW_RAISER_L_FB, ExpressionPreset.surprised),
+        };
+
         // rename .vrm to .txt and set
         [SerializeField]
         TextAsset VRM1Binary;
         Vrm10Instance vrm_;
 
         bool isLeft_;
-
-        public VRM1BodyUpdater(Vrm10Instance vrm, bool isLeft)
-        {
-            vrm_ = vrm;
-            isLeft_ = isLeft;
-        }
 
         // Start is called before the first frame update
         async void Start()
@@ -103,9 +118,11 @@ namespace Vrm10XR
 
             // VR用 FirstPerson 設定
             await vrm_.Vrm.FirstPerson.SetupAsync(vrm_.gameObject, new VRMShaders.RuntimeOnlyAwaitCaller());
+            // lookat
+            vrm_.LookAtTargetType = VRM10ObjectLookAt.LookAtTargetTypes.SetYawPitch;
         }
 
-        public void OnJointsUpdated(BodyTrackingFeature.XrBodyJointLocationFB[] joints)
+        public void OnBodyUpdated(BodyTrackingFeature.XrBodyJointLocationFB[] joints)
         {
             if (vrm_ == null)
             {
@@ -131,8 +148,49 @@ namespace Vrm10XR
                 }
                 else
                 {
-                    Debug.LogWarning($"{b} is null");
+                    // Debug.LogWarning($"{b} is null");
                 }
+            }
+        }
+
+        static float ClampDegree(float deg)
+        {
+            while (deg > 180.0f)
+            {
+                deg -= 180.0f;
+            }
+            while (deg < -180.0f)
+            {
+                deg += 180.0f;
+            }
+            return deg;
+        }
+
+        const float LOOK_FACTOR = 2.0f;
+        public void OnEyeUpdated(EyeTrackingFeature.XrEyeGazeV2FB[] gazes)
+        {
+            if (vrm_ == null)
+            {
+                return;
+            }
+
+            var leftRotation = gazes[0].gazePose.orientation.ToUnity();
+            var leftLocal = Quaternion.Inverse(Camera.main.transform.rotation) * leftRotation;
+            var leftEuler = leftLocal.eulerAngles;
+
+            vrm_.Runtime.LookAt.SetLookAtYawPitch(ClampDegree(-leftEuler.y), ClampDegree(leftEuler.x));
+        }
+
+        public void OnFaceUpdated(float[] weights)
+        {
+            if (vrm_ == null)
+            {
+                return;
+            }
+
+            foreach (var (xrExpression, vrmExpression) in ExpressionMap)
+            {
+                vrm_.Runtime.Expression.SetWeight(ExpressionKey.CreateFromPreset(vrmExpression), weights[(int)xrExpression]);
             }
         }
     }

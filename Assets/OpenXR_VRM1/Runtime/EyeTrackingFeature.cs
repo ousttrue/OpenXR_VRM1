@@ -13,7 +13,7 @@ namespace openxr
             UnityEditor.BuildTargetGroup.Standalone, UnityEditor.BuildTargetGroup.Android },
         Company = "VRMC",
         Desc = "Enable eye tracking in unity",
-        DocumentationLink = "https://developer.oculus.com/documentation/native/android/move-eye-tracking/",
+        DocumentationLink = "https://developer.oculus.com/documentation/native/android/move-ref-blendshapes/",
         OpenxrExtensionStrings = xr_extension,
         Version = "0.0.1",
         FeatureId = featureId)]
