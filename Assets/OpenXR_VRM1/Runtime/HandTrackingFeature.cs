@@ -8,7 +8,7 @@ using UnityEngine.XR.OpenXR;
 namespace openxr
 {
 #if UNITY_EDITOR
-    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = "ext_hand_tracking",
+    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = xr_extension,
         BuildTargetGroups = new[] {
             UnityEditor.BuildTargetGroup.Standalone, UnityEditor.BuildTargetGroup.WSA, UnityEditor.BuildTargetGroup.Android },
         Company = "VRMC",

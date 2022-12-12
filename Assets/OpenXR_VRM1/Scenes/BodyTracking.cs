@@ -53,7 +53,7 @@ namespace Vrm10XR
         void BodyBegin(BodyTrackingFeature feature, ulong session)
         {
             Debug.Log("BodyBegin");
-            bodyTracker_ = BodyTracker.CreateTracker(feature, session);
+            bodyTracker_ = BodyTracker.Create(feature, session);
 
             bodyTracker_.SkeletonUpdated += OnSkeleton;
         }

@@ -9,10 +9,10 @@ using UnityEngine.XR.OpenXR.Features;
 namespace openxr
 {
 #if UNITY_EDITOR
-    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = "Body tracking Extension",
+    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = xr_extension,
         BuildTargetGroups = new[] {
             UnityEditor.BuildTargetGroup.Standalone, UnityEditor.BuildTargetGroup.Android },
-        Company = "ousttrue",
+        Company = "VRMC",
         Desc = "Enable body tracking in unity",
         DocumentationLink = "https://developer.oculus.com/documentation/native/android/move-body-tracking/",
         OpenxrExtensionStrings = xr_extension,

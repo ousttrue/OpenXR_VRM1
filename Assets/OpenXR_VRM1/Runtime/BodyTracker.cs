@@ -16,17 +16,7 @@ namespace openxr
 
         public event Action<BodyTrackingFeature.XrBodySkeletonJointFB[]> SkeletonUpdated;
 
-        public BodyTracker(BodyTrackingFeature feature, ulong handle)
-        {
-            feature_ = feature;
-            handle_ = handle;
-            joints_ = new BodyTrackingFeature.XrBodyJointLocationFB[BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
-            pin_ = new ArrayPin(joints_);
-            skeletonJoints_ = new BodyTrackingFeature.XrBodySkeletonJointFB[BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
-            skletonPin_ = new ArrayPin(skeletonJoints_);
-        }
-
-        public static BodyTracker CreateTracker(BodyTrackingFeature feature, ulong session)
+        public static BodyTracker Create(BodyTrackingFeature feature, ulong session)
         {
             var create = new BodyTrackingFeature.XrBodyTrackerCreateInfoFB
             {
@@ -41,7 +31,17 @@ namespace openxr
                 return null;
             }
 
-            return new BodyTracker(feature, handle);
+            var joints = new BodyTrackingFeature.XrBodyJointLocationFB[BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
+            var skeletonJoints = new BodyTrackingFeature.XrBodySkeletonJointFB[BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
+            return new BodyTracker
+            {
+                feature_ = feature,
+                handle_ = handle,
+                joints_ = joints,
+                pin_ = new ArrayPin(joints),
+                skeletonJoints_ = skeletonJoints,
+                skletonPin_ = new ArrayPin(skeletonJoints),
+            };
         }
 
         public void Dispose()

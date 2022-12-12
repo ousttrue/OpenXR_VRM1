@@ -7,33 +7,14 @@ namespace openxr
     public class HandTracker : IDisposable
     {
         HandTrackingFeature feature_;
-        internal ulong handle_ = 0;
+        ulong handle_ = 0;
 
         XrHandJointLocationEXT[] allJoints_;
         ArrayPin pin_;
         XrHandJointsLocateInfoEXT jli_;
         XrHandJointLocationsEXT joints_;
 
-        HandTracker(HandTrackingFeature feature, ulong handle)
-        {
-            feature_ = feature;
-            Debug.Log($"tracker: {handle}");
-            handle_ = handle;
-            allJoints_ = new XrHandJointLocationEXT[XR_HAND_JOINT_COUNT_EXT];
-            pin_ = new ArrayPin(allJoints_);
-
-            jli_ = new XrHandJointsLocateInfoEXT
-            {
-                stype = XrStructureType.XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT,
-            };
-            joints_ = new XrHandJointLocationsEXT
-            {
-                stype = XrStructureType.XR_TYPE_HAND_JOINT_LOCATIONS_EXT,
-                jointCount = XR_HAND_JOINT_COUNT_EXT,
-            };
-        }
-
-        public static HandTracker CreateTracker(HandTrackingFeature feature, ulong session, XrHandEXT hand)
+        public static HandTracker Create(HandTrackingFeature feature, ulong session, XrHandEXT hand)
         {
             var info = new XrHandTrackerCreateInfoEXT
             {
@@ -48,7 +29,25 @@ namespace openxr
                 return null;
             }
 
-            return new HandTracker(feature, handle);
+            Debug.Log($"tracker: {handle}");
+
+            var allJoints = new XrHandJointLocationEXT[XR_HAND_JOINT_COUNT_EXT];    
+            return new HandTracker
+            {
+                feature_ = feature,
+                handle_ = handle,
+                allJoints_ = allJoints,
+                pin_ = new ArrayPin(allJoints),
+                jli_ = new XrHandJointsLocateInfoEXT
+                {
+                    stype = XrStructureType.XR_TYPE_HAND_JOINTS_LOCATE_INFO_EXT,
+                },
+                joints_ = new XrHandJointLocationsEXT
+                {
+                    stype = XrStructureType.XR_TYPE_HAND_JOINT_LOCATIONS_EXT,
+                    jointCount = XR_HAND_JOINT_COUNT_EXT,
+                },
+            };
         }
 
         public void Dispose()

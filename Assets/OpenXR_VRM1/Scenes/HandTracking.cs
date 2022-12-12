@@ -54,8 +54,8 @@ namespace Vrm10XR
         void HandBegin(HandTrackingFeature feature, ulong session)
         {
             Debug.Log("HandBegin");
-            leftHandTracker_ = HandTracker.CreateTracker(feature, session, HandTrackingFeature.XrHandEXT.XR_HAND_LEFT_EXT);
-            rightHandTracker_ = HandTracker.CreateTracker(feature, session, HandTrackingFeature.XrHandEXT.XR_HAND_RIGHT_EXT);
+            leftHandTracker_ = HandTracker.Create(feature, session, HandTrackingFeature.XrHandEXT.XR_HAND_LEFT_EXT);
+            rightHandTracker_ = HandTracker.Create(feature, session, HandTrackingFeature.XrHandEXT.XR_HAND_RIGHT_EXT);
         }
 
         void HandEnd()
