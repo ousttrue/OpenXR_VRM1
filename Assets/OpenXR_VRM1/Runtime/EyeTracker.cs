@@ -18,7 +18,7 @@ namespace openxr
             var retVal = feature.XrCreateEyeTrackerFB(session, create, out var handle);
             if (retVal != 0)
             {
-                Debug.LogWarning("Couldn't open left  hand tracker: Error " + retVal);
+                Debug.LogWarning("XrCreateEyeTrackerFB: " + retVal);
                 return null;
             }
             Debug.Log($"Create EyeTracker: {handle}");
@@ -54,7 +54,7 @@ namespace openxr
             var retVal = feature_.XrGetEyeGazesFB(handle_, in gazesInfo, ref eyeGazes);
             if (retVal != 0)
             {
-                Debug.LogWarning($"xrLocateHandJointsEXT: {handle_}: {retVal}");
+                Debug.LogWarning($"XrGetEyeGazesFB: {handle_}: {retVal}");
                 gazes = default;
                 return false;
             }

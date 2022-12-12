@@ -12,7 +12,7 @@ namespace Vrm10XR
         void Start()
         {
             objects_ = new Transform[2];
-            for (int i = 0; i < 2; ++i)
+            for (int i = 0; i < objects_.Length; ++i)
             {
                 var value = i;
                 var t = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;

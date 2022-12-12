@@ -77,6 +77,7 @@ MonoBehaviour:
   - {fileID: 2600413990285401549}
   - {fileID: 6106685181994740932}
   - {fileID: -9112015625478854671}
+  - {fileID: 7262134019476929821}
   - {fileID: -3215108077903657773}
   - {fileID: -2993982444574683523}
   - {fileID: -3321686995878956161}
@@ -684,6 +685,26 @@ MonoBehaviour:
   required: 0
   targetQuest: 1
   targetQuest2: 1
+--- !u!114 &7262134019476929821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47efcd26b4492d4b820110271e65f88, type: 3}
+  m_Name: FaceTrackingFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 1
+  nameUi: XR_FB_face_tracking
+  version: 0.0.1
+  featureIdInternal: com.vrmc.face_tracking
+  openxrExtensionStrings: XR_FB_face_tracking
+  company: VRMC
+  priority: 0
+  required: 0
 --- !u!114 &7796469836042378828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,6 +722,7 @@ MonoBehaviour:
   - {fileID: 4940674759226019450}
   - {fileID: 1897846336074149155}
   - {fileID: 7981112421543693561}
+  - {fileID: 8946495255372722369}
   - {fileID: 4403095223282766105}
   - {fileID: -5951048803377158039}
   - {fileID: -5375596013745745416}
@@ -748,6 +770,26 @@ MonoBehaviour:
   version: 0.0.1
   featureIdInternal: com.ousttrue.bodytracking
   openxrExtensionStrings: XR_FB_body_tracking
+  company: VRMC
+  priority: 0
+  required: 0
+--- !u!114 &8946495255372722369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47efcd26b4492d4b820110271e65f88, type: 3}
+  m_Name: FaceTrackingFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: XR_FB_face_tracking
+  version: 0.0.1
+  featureIdInternal: com.vrmc.face_tracking
+  openxrExtensionStrings: XR_FB_face_tracking
   company: VRMC
   priority: 0
   required: 0

@@ -27,12 +27,12 @@ namespace openxr
             var retVal = feature.XrCreateBodyTrackerFB(session, create, out handle);
             if (retVal != 0)
             {
-                Debug.Log($"Couldn't open body hand tracker: {retVal}");
+                Debug.Log($"XrCreateBodyTrackerFB: {retVal}");
                 return null;
             }
 
-            var joints = new BodyTrackingFeature.XrBodyJointLocationFB[BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
-            var skeletonJoints = new BodyTrackingFeature.XrBodySkeletonJointFB[BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
+            var joints = new BodyTrackingFeature.XrBodyJointLocationFB[(int)BodyTrackingFeature.XrBodyJointFB.XR_BODY_JOINT_COUNT_FB];
+            var skeletonJoints = new BodyTrackingFeature.XrBodySkeletonJointFB[(int)BodyTrackingFeature.XrBodyJointFB.XR_BODY_JOINT_COUNT_FB];
             return new BodyTracker
             {
                 feature_ = feature,
@@ -59,13 +59,6 @@ namespace openxr
 
         public bool TryGetJoints(long frame_time, ulong space, out BodyTrackingFeature.XrBodyJointLocationFB[] values)
         {
-            if (handle_ == 0)
-            {
-                Debug.LogWarning("zero");
-                values = default;
-                return false;
-            }
-
             var jli = new BodyTrackingFeature.XrBodyJointsLocateInfoFB
             {
                 type = XrStructureType.XR_TYPE_BODY_JOINTS_LOCATE_INFO_FB,

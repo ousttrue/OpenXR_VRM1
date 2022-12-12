@@ -6,11 +6,12 @@ namespace Vrm10XR
 {
     class BodyJoints : MonoBehaviour
     {
-        Transform[] objects_ = new Transform[openxr.BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB];
+        Transform[] objects_;
 
         public void Start()
         {
-            for (int i = 0; i < BodyTrackingFeature.XR_BODY_JOINT_COUNT_FB; ++i)
+            objects_ = new Transform[(int)openxr.BodyTrackingFeature.XrBodyJointFB.XR_BODY_JOINT_COUNT_FB];
+            for (int i = 0; i < objects_.Length; ++i)
             {
                 var value = (BodyTrackingFeature.XrBodyJointFB)i;
                 var t = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;

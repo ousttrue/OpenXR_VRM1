@@ -23,7 +23,6 @@ namespace openxr
     {
         public const string featureId = "com.ousttrue.bodytracking";
         public const string xr_extension = "XR_FB_body_tracking";
-        public const int XR_BODY_JOINT_COUNT_FB = 70;
 
         public enum XrBodyJointSetFB
         {

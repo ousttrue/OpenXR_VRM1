@@ -6,15 +6,15 @@ using UnityEngine.XR.OpenXR;
 namespace Vrm10XR
 {
     [DisallowMultipleComponent]
-    public class EyeTracking : MonoBehaviour
+    public class FaceTracking : MonoBehaviour
     {
         FrameTimeFeature frame_;
 
-        EyeTrackingFeature eyeTracking_;
-        EyeTracker eyeTracker_;
+        FaceTrackingFeature faceTracking_;
+        FaceTracker faceTracker_;
 
         [SerializeField]
-        UnityEvent<EyeTrackingFeature.XrEyeGazeV2FB[]> EyeUpdated;
+        UnityEvent<float[]> FaceWeightsUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -36,38 +36,38 @@ namespace Vrm10XR
                 return;
             }
 
-            if (!TryGetFeature(out eyeTracking_))
+            if (!TryGetFeature(out faceTracking_))
             {
                 this.enabled = false;
                 return;
             }
 
-            eyeTracking_.SessionBegin += EyeBegin;
-            eyeTracking_.SessionEnd += EyeEnd;
+            faceTracking_.SessionBegin += FaceBegin;
+            faceTracking_.SessionEnd += FaceEnd;
         }
 
-        void EyeBegin(EyeTrackingFeature feature, ulong session)
+        void FaceBegin(FaceTrackingFeature feature, ulong session)
         {
-            Debug.Log("EyeBegin");
-            eyeTracker_ = EyeTracker.Create(feature, session);
+            Debug.Log("FaceBegin");
+            faceTracker_ = FaceTracker.Create(feature, session);
         }
 
-        void EyeEnd()
+        void FaceEnd()
         {
-            Debug.Log("EyeEnd");
-            eyeTracker_.Dispose();
-            eyeTracker_ = null;
+            Debug.Log("FaceEnd");
+            faceTracker_.Dispose();
+            faceTracker_ = null;
         }
 
         void Update()
         {
             var time = frame_.FrameTime;
             var space = frame_.CurrentAppSpace;
-            if (eyeTracker_ != null)
+            if (faceTracker_ != null)
             {
-                if (eyeTracker_.TryGetGaze(time, space, out var gazes))
+                if (faceTracker_.TryGetFaceExpressionWeights(time, space, out var weights, out var confidences))
                 {
-                    EyeUpdated.Invoke(gazes);
+                    FaceWeightsUpdated.Invoke(weights);
                 }
             }
         }

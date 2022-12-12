@@ -25,25 +25,23 @@ namespace Vrm10XR
             feature = OpenXRSettings.Instance.GetFeature<T>();
             if (feature == null || feature.enabled == false)
             {
+                Debug.LogError($"fail to get {typeof(T)}");
                 return false;
             }
             return true;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             if (!TryGetFeature(out frame_))
             {
                 this.enabled = false;
-                Debug.LogError("fail to get frameState_");
                 return;
             }
 
             if (!TryGetFeature(out handTracking_))
             {
                 this.enabled = false;
-                Debug.LogError("fail to get handTracking_");
                 return;
             }
 

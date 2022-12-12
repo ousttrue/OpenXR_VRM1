@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 1437282820}
   - component: {fileID: 1437282819}
   m_Layer: 0
-  m_Name: EyeTracking
+  m_Name: FaceTracking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -412,7 +412,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1437282816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfedaeaa12c837046aa8aa05aa929417, type: 3}
+  m_Script: {fileID: 11500000, guid: 4bc0c2bf73485fd418012687e59590e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1437282820
@@ -424,15 +424,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1437282816}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4288902ab654ab248bf3f383f2cfb544, type: 3}
+  m_Script: {fileID: 11500000, guid: b5a66f58055e63e4ab1fb2eb9cbe16dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EyeUpdated:
+  FaceWeightsUpdated:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1437282819}
-        m_TargetAssemblyTypeName: Vrm10XR.EyeJoints, VRM1Hand
-        m_MethodName: OnGazesUpdated
+        m_TargetAssemblyTypeName: Vrm10XR.FaceWeights, VRM1Hand
+        m_MethodName: OnWeightsUpdated
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
