@@ -875,4 +875,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9864642076ddbf469b03caa6d90e032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  use52BlendShape: 0
   VRM1Binary: {fileID: 4900000, guid: f6257556ecfe2a44996c408093b79e0f, type: 3}

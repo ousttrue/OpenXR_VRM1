@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using openxr;
 using UnityEngine;
 using UniVRM10;
@@ -103,6 +104,92 @@ namespace Vrm10XR
             // (XrFaceExpressionFB.XR_FACE_EXPRESSION_OUTER_BROW_RAISER_L_FB, ExpressionPreset.surprised),
         };
 
+        // https://developer.oculus.com/documentation/native/android/move-ref-blendshapes/
+        // https://hinzka.hatenablog.com/entry/2020/06/15/072929
+        static Dictionary<XrFaceExpressionFB, string> XrTo52 = new Dictionary<XrFaceExpressionFB, string>
+        {
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_BROW_LOWERER_L_FB, "BrowDownLeft"}, // 2
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_BROW_LOWERER_R_FB, "BrowDownRight"}, // 3
+
+            // XR_FACE_EXPRESSION_CHEEK_PUFF_L_FB = 2,
+            // XR_FACE_EXPRESSION_CHEEK_PUFF_R_FB = 3,
+            // XR_FACE_EXPRESSION_CHEEK_RAISER_L_FB = 4,
+            // XR_FACE_EXPRESSION_CHEEK_RAISER_R_FB = 5,
+            // XR_FACE_EXPRESSION_CHEEK_SUCK_L_FB = 6,
+            // XR_FACE_EXPRESSION_CHEEK_SUCK_R_FB = 7,
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_CHIN_RAISER_B_FB, "CheekPuff"}, // 20
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_CHIN_RAISER_T_FB, "MouthShrugUpper"}, // 35
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_DIMPLER_L_FB, "MouthDimpleLeft"}, // 42
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_DIMPLER_R_FB, "MouthDimpleRight"}, // 43
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_CLOSED_L_FB, "EyeBlinkLeft"}, // 14
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_CLOSED_R_FB, "EyeBlinkRight"}, // 15
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_DOWN_L_FB, "EyeLookDownLeft"}, // 8
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_DOWN_R_FB, "EyeLookDownRight"}, // 9
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_LEFT_L_FB, "EyeLookOutLeft"}, // 12
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_LEFT_R_FB, "EyeLookInRight"}, // 11
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_RIGHT_L_FB, "EyeLookInLeft"}, // 10
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_RIGHT_R_FB, "EyeLookOutRight"}, // 13
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_UP_L_FB, "EyeLookUpLeft"}, // 6
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_EYES_LOOK_UP_R_FB, "EyeLookUpRight"}, // 7
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_INNER_BROW_RAISER_L_FB, "BrowInnerUp"}, // 1
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_INNER_BROW_RAISER_R_FB, "BrowInnerUp"}, // 1
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_JAW_DROP_FB, "JawOpen"}, // 25
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_JAW_SIDEWAYS_LEFT_FB, "JawLeft"}, // 27
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_JAW_SIDEWAYS_RIGHT_FB, "JawRight"}, // 28
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_JAW_THRUST_FB, "JawForward"}, // 26
+
+            // XR_FACE_EXPRESSION_LID_TIGHTENER_L_FB = 28,
+            // XR_FACE_EXPRESSION_LID_TIGHTENER_R_FB = 29,
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_CORNER_DEPRESSOR_L_FB, "MouthFrownLeft"}, // 40
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_CORNER_DEPRESSOR_R_FB, "MouthFrownRight"}, // 41
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_CORNER_PULLER_L_FB, "MouthSmileLeft"}, // 38
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_CORNER_PULLER_R_FB, "MouthSmileRight"}, // 39
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_FUNNELER_LB_FB, "MouthFunnel"}, // 29
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_FUNNELER_LT_FB, "MouthFunnel"}, // 29
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_FUNNELER_RB_FB, "MouthFunnel"}, // 29
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_FUNNELER_RT_FB, "MouthFunnel"}, // 29
+
+            // XR_FACE_EXPRESSION_LIP_PRESSOR_L_FB = 38,
+            // XR_FACE_EXPRESSION_LIP_PRESSOR_R_FB = 39,
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_PUCKER_L_FB, "MouthPucker"}, // 30
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_PUCKER_R_FB, "MouthPucker"}, // 30
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_STRETCHER_L_FB, "MouthLeft"}, // 31
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_STRETCHER_R_FB, "MouthRight"}, // 32 
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_SUCK_LB_FB, "MouthRollLower"}, // 34
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_SUCK_LT_FB, "MouthRollUpper"}, // 33
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_SUCK_RB_FB, "MouthRollLower"}, // 34
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_SUCK_RT_FB, "MouthRollUpper"}, // 33
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_TIGHTENER_L_FB, "EyeSquintLeft"}, // 16
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIP_TIGHTENER_R_FB, "EyeSquintRight"}, // 17
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LIPS_TOWARD_FB, "MouthClose"}, // 37
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LOWER_LIP_DEPRESSOR_L_FB, "MouthLowerDownLeft"}, // 46,
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_LOWER_LIP_DEPRESSOR_R_FB, "MouthLowerDownRight"}, // 47
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_MOUTH_LEFT_FB, "MouthPressLeft"}, // 48
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_MOUTH_RIGHT_FB, "MouthPressRight"}, // 49
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_NOSE_WRINKLER_L_FB, "NoseSneerLeft"}, // 23
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_NOSE_WRINKLER_R_FB, "NoseSneerRight"}, // 24
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_OUTER_BROW_RAISER_L_FB, "BrowOuterUpLeft"}, // 4 
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_OUTER_BROW_RAISER_R_FB, "BrowOuterUpRight"}, // 5
+
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_UPPER_LID_RAISER_L_FB, "EyeWideLeft"}, // 18
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_UPPER_LID_RAISER_R_FB, "EyeWideRight"}, // 19
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_UPPER_LIP_RAISER_L_FB, "MouthUpperUpLeft"}, // 44
+            {XrFaceExpressionFB.XR_FACE_EXPRESSION_UPPER_LIP_RAISER_R_FB, "MouthUpperUpRight"}, // 45
+        };
+
+        [SerializeField]
+        bool use52BlendShape;
+
         // rename .vrm to .txt and set
         [SerializeField]
         TextAsset VRM1Binary;
@@ -188,9 +275,22 @@ namespace Vrm10XR
                 return;
             }
 
-            foreach (var (xrExpression, vrmExpression) in ExpressionMap)
+            if (use52BlendShape)
             {
-                vrm_.Runtime.Expression.SetWeight(ExpressionKey.CreateFromPreset(vrmExpression), weights[(int)xrExpression]);
+                for (int i = 0; i < weights.Length; ++i)
+                {
+                    if (XrTo52.TryGetValue((FaceTrackingFeature.XrFaceExpressionFB)i, out var key))
+                    {
+                        vrm_.Runtime.Expression.SetWeight(ExpressionKey.CreateCustom(key), weights[i]);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var (xrExpression, vrmExpression) in ExpressionMap)
+                {
+                    vrm_.Runtime.Expression.SetWeight(ExpressionKey.CreateFromPreset(vrmExpression), weights[(int)xrExpression]);
+                }
             }
         }
     }
