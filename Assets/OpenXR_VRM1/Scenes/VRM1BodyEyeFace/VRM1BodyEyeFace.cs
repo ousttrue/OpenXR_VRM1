@@ -157,16 +157,16 @@ namespace Vrm10XR
         {
             while (deg > 180.0f)
             {
-                deg -= 180.0f;
+                deg -= 360.0f;
             }
             while (deg < -180.0f)
             {
-                deg += 180.0f;
+                deg += 360.0f;
             }
             return deg;
         }
 
-        const float LOOK_FACTOR = 2.0f;
+        const float LOOK_FACTOR = 4.0f;
         public void OnEyeUpdated(EyeTrackingFeature.XrEyeGazeV2FB[] gazes)
         {
             if (vrm_ == null)
@@ -178,7 +178,7 @@ namespace Vrm10XR
             var leftLocal = Quaternion.Inverse(Camera.main.transform.rotation) * leftRotation;
             var leftEuler = leftLocal.eulerAngles;
 
-            vrm_.Runtime.LookAt.SetLookAtYawPitch(ClampDegree(-leftEuler.y), ClampDegree(leftEuler.x));
+            vrm_.Runtime.LookAt.SetLookAtYawPitch(ClampDegree(leftEuler.y) * LOOK_FACTOR, ClampDegree(-leftEuler.x) * LOOK_FACTOR);
         }
 
         public void OnFaceUpdated(float[] weights)
