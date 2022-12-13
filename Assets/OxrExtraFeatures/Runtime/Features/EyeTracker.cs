@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace openxr
+namespace OxrExtraFeatures
 {
     public class EyeTracker : IDisposable
     {

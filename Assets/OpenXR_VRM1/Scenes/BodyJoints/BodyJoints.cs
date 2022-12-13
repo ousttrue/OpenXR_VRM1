@@ -1,5 +1,5 @@
-using openxr;
 using UnityEngine;
+using static OxrExtraFeatures.BodyTrackingFeature;
 
 
 namespace Vrm10XR
@@ -10,10 +10,10 @@ namespace Vrm10XR
 
         public void Start()
         {
-            objects_ = new Transform[(int)openxr.BodyTrackingFeature.XrBodyJointFB.XR_BODY_JOINT_COUNT_FB];
+            objects_ = new Transform[(int)XrBodyJointFB.XR_BODY_JOINT_COUNT_FB];
             for (int i = 0; i < objects_.Length; ++i)
             {
-                var value = (BodyTrackingFeature.XrBodyJointFB)i;
+                var value = (XrBodyJointFB)i;
                 var t = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
                 t.localScale = new Vector3(0.01f, 0.01f, 0.01f);
                 t.name = $"{value}";
@@ -22,7 +22,7 @@ namespace Vrm10XR
             }
         }
 
-        public void OnJointsUpdated(BodyTrackingFeature.XrBodyJointLocationFB[] joints)
+        public void OnJointsUpdated(XrBodyJointLocationFB[] joints)
         {
             for (int i = 0; i < joints.Length; ++i)
             {

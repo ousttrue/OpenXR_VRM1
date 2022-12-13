@@ -5,7 +5,7 @@ using System;
 using AOT;
 
 
-namespace openxr
+namespace OxrExtraFeatures
 {
     /// <summary>
     /// Intercept xrWaitFrame and get frame time

@@ -1,5 +1,6 @@
-using openxr;
 using UnityEngine;
+using static OxrExtraFeatures.FaceTrackingFeature;
+
 
 namespace Vrm10XR
 {
@@ -11,7 +12,7 @@ namespace Vrm10XR
 
         void Start()
         {
-            objects_ = new Transform[(int)FaceTrackingFeature.XrFaceExpressionFB.XR_FACE_EXPRESSION_COUNT_FB];
+            objects_ = new Transform[(int)XrFaceExpressionFB.XR_FACE_EXPRESSION_COUNT_FB];
             var x = START;
             var y = START;
             for (int i = 0; i < objects_.Length; ++i, x += SIZE * 2)
@@ -21,7 +22,7 @@ namespace Vrm10XR
                     x = START;
                     y += SIZE * 2;
                 }
-                var value = (FaceTrackingFeature.XrFaceExpressionFB)i;
+                var value = (XrFaceExpressionFB)i;
                 var t = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
                 t.name = $"{value}";
                 t.SetParent(transform);

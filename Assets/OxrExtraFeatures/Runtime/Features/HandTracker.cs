@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
-using static openxr.HandTrackingFeature;
 
-namespace openxr
+namespace OxrExtraFeatures
 {
+    using static HandTrackingFeature;
     public class HandTracker : IDisposable
     {
         HandTrackingFeature feature_;
@@ -31,7 +31,7 @@ namespace openxr
 
             Debug.Log($"tracker: {handle}");
 
-            var allJoints = new XrHandJointLocationEXT[XR_HAND_JOINT_COUNT_EXT];    
+            var allJoints = new XrHandJointLocationEXT[XR_HAND_JOINT_COUNT_EXT];
             return new HandTracker
             {
                 feature_ = feature,

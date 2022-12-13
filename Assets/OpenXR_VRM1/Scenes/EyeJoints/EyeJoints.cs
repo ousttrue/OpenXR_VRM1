@@ -1,5 +1,5 @@
-using openxr;
 using UnityEngine;
+using static OxrExtraFeatures.EyeTrackingFeature;
 
 namespace Vrm10XR
 {
@@ -23,7 +23,7 @@ namespace Vrm10XR
             }
         }
 
-        public void OnGazesUpdated(EyeTrackingFeature.XrEyeGazeV2FB[] gazes)
+        public void OnGazesUpdated(XrEyeGazeV2FB[] gazes)
         {
             // goto main camera forward
             transform.position = Camera.main.transform.position + Camera.main.transform.forward;

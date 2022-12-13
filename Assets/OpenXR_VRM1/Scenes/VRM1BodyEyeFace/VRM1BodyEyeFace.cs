@@ -1,9 +1,10 @@
 using System.Collections.Generic;
-using openxr;
 using UnityEngine;
 using UniVRM10;
-using static openxr.BodyTrackingFeature;
-using static openxr.FaceTrackingFeature;
+using static OxrExtraFeatures.BodyTrackingFeature;
+using static OxrExtraFeatures.EyeTrackingFeature;
+using static OxrExtraFeatures.FaceTrackingFeature;
+
 
 namespace Vrm10XR
 {
@@ -209,7 +210,7 @@ namespace Vrm10XR
             vrm_.LookAtTargetType = VRM10ObjectLookAt.LookAtTargetTypes.SetYawPitch;
         }
 
-        public void OnBodyUpdated(BodyTrackingFeature.XrBodyJointLocationFB[] joints)
+        public void OnBodyUpdated(XrBodyJointLocationFB[] joints)
         {
             if (vrm_ == null)
             {
@@ -254,7 +255,7 @@ namespace Vrm10XR
         }
 
         const float LOOK_FACTOR = 4.0f;
-        public void OnEyeUpdated(EyeTrackingFeature.XrEyeGazeV2FB[] gazes)
+        public void OnEyeUpdated(XrEyeGazeV2FB[] gazes)
         {
             if (vrm_ == null)
             {
@@ -279,7 +280,7 @@ namespace Vrm10XR
             {
                 for (int i = 0; i < weights.Length; ++i)
                 {
-                    if (XrTo52.TryGetValue((FaceTrackingFeature.XrFaceExpressionFB)i, out var key))
+                    if (XrTo52.TryGetValue((XrFaceExpressionFB)i, out var key))
                     {
                         vrm_.Runtime.Expression.SetWeight(ExpressionKey.CreateCustom(key), weights[i]);
                     }

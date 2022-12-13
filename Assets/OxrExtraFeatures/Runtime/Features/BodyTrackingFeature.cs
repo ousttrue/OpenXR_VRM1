@@ -6,7 +6,7 @@ using UnityEngine.XR.OpenXR;
 using UnityEngine.XR.OpenXR.Features;
 
 
-namespace openxr
+namespace OxrExtraFeatures
 {
 #if UNITY_EDITOR
     [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = xr_extension,

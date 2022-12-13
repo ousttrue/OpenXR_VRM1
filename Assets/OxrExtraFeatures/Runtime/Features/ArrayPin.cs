@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace openxr
+namespace OxrExtraFeatures
 {
     class ArrayPin : IDisposable
     {

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 
 
-namespace openxr
+namespace OxrExtraFeatures
 {
     public enum XrResult
     {

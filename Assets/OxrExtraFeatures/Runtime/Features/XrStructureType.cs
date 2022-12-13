@@ -1,4 +1,4 @@
-namespace openxr
+namespace OxrExtraFeatures
 {
     public enum XrStructureType
     {

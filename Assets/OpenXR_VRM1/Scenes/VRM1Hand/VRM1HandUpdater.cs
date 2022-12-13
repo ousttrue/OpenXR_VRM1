@@ -1,7 +1,6 @@
-using openxr;
 using UnityEngine;
 using UniVRM10;
-using static openxr.HandTrackingFeature;
+using static OxrExtraFeatures.HandTrackingFeature;
 
 
 namespace Vrm10XR
@@ -76,12 +75,12 @@ namespace Vrm10XR
             vrm_.transform.SetParent(transform, false);
         }
 
-        public void OnLeftJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
+        public void OnLeftJointsUpdated(XrHandJointLocationEXT[] joints)
         {
             UpdateJoints(joints, 0);
         }
 
-        public void OnRightJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
+        public void OnRightJointsUpdated(XrHandJointLocationEXT[] joints)
         {
             UpdateJoints(joints, 1);
         }

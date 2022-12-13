@@ -1,5 +1,5 @@
-using openxr;
 using UnityEngine;
+using static OxrExtraFeatures.HandTrackingFeature;
 
 namespace Vrm10XR
 {
@@ -9,10 +9,10 @@ namespace Vrm10XR
 
         void Start()
         {
-            objects_ = new Transform[openxr.HandTrackingFeature.XR_HAND_JOINT_COUNT_EXT];
-            for (int i = 0; i < HandTrackingFeature.XR_HAND_JOINT_COUNT_EXT; ++i)
+            objects_ = new Transform[XR_HAND_JOINT_COUNT_EXT];
+            for (int i = 0; i < XR_HAND_JOINT_COUNT_EXT; ++i)
             {
-                var value = (HandTrackingFeature.XrHandJointEXT)i;
+                var value = (XrHandJointEXT)i;
                 var t = GameObject.CreatePrimitive(PrimitiveType.Cube).transform;
                 t.localScale = new Vector3(0.01f, 0.01f, 0.01f);
                 t.name = $"{value}";
@@ -21,7 +21,7 @@ namespace Vrm10XR
             }
         }
 
-        public void OnJointsUpdated(HandTrackingFeature.XrHandJointLocationEXT[] joints)
+        public void OnJointsUpdated(XrHandJointLocationEXT[] joints)
         {
             for (int i = 0; i < joints.Length; ++i)
             {
