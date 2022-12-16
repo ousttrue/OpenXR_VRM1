@@ -15,10 +15,10 @@ namespace Vrm10XR
         HandTracker rightHandTracker_;
 
         [SerializeField]
-        UnityEvent<HandTrackingFeature.XrHandJointLocationEXT[]> OnLeftJointUpdated;
+        UnityEvent<long, HandTrackingFeature.XrHandJointLocationEXT[]> OnLeftJointUpdated;
 
         [SerializeField]
-        UnityEvent<HandTrackingFeature.XrHandJointLocationEXT[]> OnRightJointUpdated;
+        UnityEvent<long, HandTrackingFeature.XrHandJointLocationEXT[]> OnRightJointUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -75,7 +75,7 @@ namespace Vrm10XR
                 HandTrackingFeature.XrHandJointLocationEXT[] joints = default;
                 if (leftHandTracker_.TryGetJoints(time, space, out joints))
                 {
-                    OnLeftJointUpdated.Invoke(joints);
+                    OnLeftJointUpdated.Invoke(time, joints);
                 }
             }
             if (rightHandTracker_ != null)
@@ -83,7 +83,7 @@ namespace Vrm10XR
                 HandTrackingFeature.XrHandJointLocationEXT[] joints = default;
                 if (rightHandTracker_.TryGetJoints(time, space, out joints))
                 {
-                    OnRightJointUpdated.Invoke(joints);
+                    OnRightJointUpdated.Invoke(time, joints);
                 }
             }
         }
