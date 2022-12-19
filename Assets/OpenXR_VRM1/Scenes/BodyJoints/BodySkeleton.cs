@@ -22,7 +22,7 @@ namespace Vrm10XR
             }
         }
 
-        public void OnSkeletonUpdated(XrBodySkeletonJointFB[] joints)
+        public void OnSkeletonUpdated(long time, XrBodySkeletonJointFB[] joints)
         {
             for (int i = 0; i < joints.Length; ++i)
             {

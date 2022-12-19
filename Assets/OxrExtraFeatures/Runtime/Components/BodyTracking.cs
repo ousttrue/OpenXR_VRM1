@@ -14,10 +14,10 @@ namespace Vrm10XR
         BodyTracker bodyTracker_;
 
         [SerializeField]
-        UnityEvent<BodyTrackingFeature.XrBodySkeletonJointFB[]> SkeletonUpdated;
+        UnityEvent<long, BodyTrackingFeature.XrBodySkeletonJointFB[]> SkeletonUpdated;
 
         [SerializeField]
-        UnityEvent<BodyTrackingFeature.XrBodyJointLocationFB[]> BodyUpdated;
+        UnityEvent<long, BodyTrackingFeature.XrBodyJointLocationFB[]> BodyUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -65,7 +65,7 @@ namespace Vrm10XR
 
         void OnSkeleton(BodyTrackingFeature.XrBodySkeletonJointFB[] joints)
         {
-            SkeletonUpdated.Invoke(joints);
+            SkeletonUpdated.Invoke(frame_.FrameTime, joints);
             // if (skeletonJoints_ == null)
             // {
             //     skeletonJoints_ = new Transform[joints.Length];
@@ -97,7 +97,7 @@ namespace Vrm10XR
                 BodyTrackingFeature.XrBodyJointLocationFB[] joints = default;
                 if (bodyTracker_.TryGetJoints(time, space, out joints))
                 {
-                    BodyUpdated.Invoke(joints);
+                    BodyUpdated.Invoke(time, joints);
                 }
             }
         }

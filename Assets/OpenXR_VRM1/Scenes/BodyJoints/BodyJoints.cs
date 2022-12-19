@@ -1,10 +1,11 @@
+using OxrExtraFeatures;
 using UnityEngine;
 using static OxrExtraFeatures.BodyTrackingFeature;
 
 
 namespace Vrm10XR
 {
-    class BodyJoints : MonoBehaviour
+    class BodyJoints : MonoBehaviour, BodyTracker.IReceiver
     {
         Transform[] objects_;
 
@@ -22,7 +23,7 @@ namespace Vrm10XR
             }
         }
 
-        public void OnJointsUpdated(XrBodyJointLocationFB[] joints)
+        public void OnReceived(long time, XrBodyJointLocationFB[] joints)
         {
             for (int i = 0; i < joints.Length; ++i)
             {
