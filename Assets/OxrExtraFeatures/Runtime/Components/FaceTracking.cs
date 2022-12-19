@@ -14,7 +14,7 @@ namespace Vrm10XR
         FaceTracker faceTracker_;
 
         [SerializeField]
-        UnityEvent<float[]> FaceWeightsUpdated;
+        UnityEvent<long, float[]> FaceWeightsUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -67,7 +67,7 @@ namespace Vrm10XR
             {
                 if (faceTracker_.TryGetFaceExpressionWeights(time, space, out var weights, out var confidences))
                 {
-                    FaceWeightsUpdated.Invoke(weights);
+                    FaceWeightsUpdated.Invoke(time, weights);
                 }
             }
         }
