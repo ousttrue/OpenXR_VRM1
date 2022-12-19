@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f237815bfd9c048bb629a4ccdb8357, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DataPath: HandJointL.dat
+  DataPath: HandJointsL.dat
   OnJointUpdated:
     m_PersistentCalls:
       m_Calls:
@@ -339,7 +339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &2060513546
 MeshCollider:
   m_ObjectHideFlags: 0
