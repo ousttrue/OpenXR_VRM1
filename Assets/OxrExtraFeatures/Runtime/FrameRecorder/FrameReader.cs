@@ -77,9 +77,8 @@ namespace Vrm10XR
 
             var target = header_.StartTime + elapsed;
 
-            var start = GetFrame(1, out var startTime);
-            header_.StartTime = startTime;
-            for (int i = 2; i < header_.FrameCount; ++i)
+            var start = GetFrame(0, out var startTime);
+            for (int i = 1; i < header_.FrameCount; ++i)
             {
                 var end = GetFrame(i, out var endTime);
                 if (target >= startTime && target < endTime)

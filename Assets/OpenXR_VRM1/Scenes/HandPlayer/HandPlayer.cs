@@ -40,5 +40,11 @@ namespace Vrm10XR
                 OnJointUpdated.Invoke(time, joints_);
             }
         }
+
+        void OnDisable()
+        {
+            reader_.Dispose();
+            reader_ = null;
+        }
     }
 }

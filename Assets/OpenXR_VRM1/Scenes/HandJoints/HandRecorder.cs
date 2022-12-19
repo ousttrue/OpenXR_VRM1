@@ -15,6 +15,8 @@ namespace Vrm10XR
 
         FrameWriter sink_;
 
+        int count_;
+
         public static readonly int ItemSize = Marshal.SizeOf<XrHandJointLocationEXT>() * HandTrackingFeature.XR_HAND_JOINT_COUNT_EXT;
 
         void Start()
@@ -32,6 +34,12 @@ namespace Vrm10XR
 
         public void OnReceived(long time, HandTrackingFeature.XrHandJointLocationEXT[] joints)
         {
+            if (count_++ == 0)
+            {
+                // skip first frame
+                return;
+            }
+
             if (!sink_.PushArray(time, joints))
             {
                 enabled = false;
