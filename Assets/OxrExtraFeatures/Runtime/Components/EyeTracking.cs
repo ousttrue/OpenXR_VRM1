@@ -14,7 +14,7 @@ namespace Vrm10XR
         EyeTracker eyeTracker_;
 
         [SerializeField]
-        UnityEvent<EyeTrackingFeature.XrEyeGazeV2FB[]> EyeUpdated;
+        UnityEvent<long, EyeTrackingFeature.XrEyeGazeV2FB[]> EyeUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -67,7 +67,7 @@ namespace Vrm10XR
             {
                 if (eyeTracker_.TryGetGaze(time, space, out var gazes))
                 {
-                    EyeUpdated.Invoke(gazes);
+                    EyeUpdated.Invoke(time, gazes);
                 }
             }
         }
