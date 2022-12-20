@@ -34,6 +34,11 @@ namespace Vrm10XR
 
         public void OnReceived(long time, XrEyeGazeV2FB[] joints)
         {
+            if (sink_ == null)
+            {
+                return;
+            }
+
             if (count_++ == 0)
             {
                 // skip first frame
