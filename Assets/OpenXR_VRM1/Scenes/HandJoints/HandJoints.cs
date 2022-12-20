@@ -29,8 +29,8 @@ namespace Vrm10XR
                 objects_[i].localScale = new Vector3(joint.radius, joint.radius, joint.radius);
 
                 // convert OpenXR right handed to unity left handed !
-                objects_[i].position = joint.pose.position.ToUnity();
-                objects_[i].rotation = joint.pose.orientation.ToUnity();
+                objects_[i].localPosition = joint.pose.position.ToUnity();
+                objects_[i].localRotation = joint.pose.orientation.ToUnity();
             }
         }
     }
