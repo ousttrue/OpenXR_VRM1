@@ -5,6 +5,12 @@ namespace OxrExtraFeatures
 {
     public class EyeTracker : IDisposable
     {
+        // UnityEngine.Events.UnityEvent<long, EyeTrackingFeature.XrEyeGazeV2FB[]>
+        public interface IReceiver
+        {
+            void OnReceived(long time, EyeTrackingFeature.XrEyeGazeV2FB[] gazes);
+        }
+
         EyeTrackingFeature feature_;
         ulong handle_;
 

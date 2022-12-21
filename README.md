@@ -6,7 +6,7 @@ The OpenXR feature implementation is based on <https://github.com/joemarshall/op
 
 UPM git package.
 
-`https://github.com/ousttrue/OpenXR_VRM1.git?path=Assets/OxrExtraFeatures#v0.1.0`
+`https://github.com/ousttrue/OpenXR_VRM1.git?path=Assets/OxrExtraFeatures#v0.2.0`
 
 Implement 4 OpenXR extensions.
 
@@ -17,7 +17,7 @@ Implement 4 OpenXR extensions.
 
 |extension|platform|note|
 |-|-|-|
-|XR_EXT_hand_tracking|quest, quest2, quest pro, hololens2 etc...|Works on all devices that support XR_EXT_hand_tracking.|
+|XR_EXT_hand_tracking|quest, quest2, quest pro, hololens2 etc...|Works on all devices that support XR_EXT_hand_tracking. SteamVR + null device + LeapController can work.|
 |XR_FB_body_tracking|quest, quest2, quest pro|Quest link also works. Require version 47 driver.|
 |XR_FB_eye_tracking|quest pro|Quest link also works.|
 |XR_FB_body_tracking|quest pro|Quest link also works.|

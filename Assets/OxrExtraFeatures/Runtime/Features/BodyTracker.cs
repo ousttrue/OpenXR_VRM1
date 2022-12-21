@@ -5,6 +5,12 @@ namespace OxrExtraFeatures
 {
     public class BodyTracker : IDisposable
     {
+        // UnityEngine.Events.UnityEvent<long, BodyTrackingFeature.XrBodyJointLocationFB[]>
+        public interface IReceiver
+        {
+            void OnReceived(long time, BodyTrackingFeature.XrBodyJointLocationFB[] joints);
+        }
+
         BodyTrackingFeature feature_;
         ulong handle_;
         BodyTrackingFeature.XrBodyJointLocationFB[] joints_;

@@ -8,13 +8,13 @@ namespace Vrm10XR
     [DisallowMultipleComponent]
     public class EyeTracking : MonoBehaviour
     {
-        FrameTimeFeature frame_;
+        FrameStateFeature frame_;
 
         EyeTrackingFeature eyeTracking_;
         EyeTracker eyeTracker_;
 
         [SerializeField]
-        UnityEvent<EyeTrackingFeature.XrEyeGazeV2FB[]> EyeUpdated;
+        UnityEvent<long, EyeTrackingFeature.XrEyeGazeV2FB[]> EyeUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -27,7 +27,6 @@ namespace Vrm10XR
             return true;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             if (!TryGetFeature(out frame_))
@@ -61,13 +60,13 @@ namespace Vrm10XR
 
         void Update()
         {
-            var time = frame_.FrameTime;
+            var time = frame_.State.predictedDisplayTime;
             var space = frame_.CurrentAppSpace;
             if (eyeTracker_ != null)
             {
                 if (eyeTracker_.TryGetGaze(time, space, out var gazes))
                 {
-                    EyeUpdated.Invoke(gazes);
+                    EyeUpdated.Invoke(time, gazes);
                 }
             }
         }

@@ -5,6 +5,12 @@ namespace OxrExtraFeatures
 {
     public class FaceTracker : IDisposable
     {
+        // UnityEngine.Events.UnityEvent<long, float[]>
+        public interface IReceiver
+        {
+            void OnReceived(long time, float[] expressions);
+        }
+
         FaceTrackingFeature feature_;
         ulong handle_;
         float[] weights_;

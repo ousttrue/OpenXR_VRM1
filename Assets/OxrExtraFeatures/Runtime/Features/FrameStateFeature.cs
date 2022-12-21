@@ -12,17 +12,16 @@ namespace OxrExtraFeatures
     /// </summary>
     /// <value></value>
 #if UNITY_EDITOR
-    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = "Frame time",
-        Company = "VRMC",
-        FeatureId = featureId,
-        Version = "0.1.0",
+    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = "Frame state",
+        FeatureId = FEATURE_ID,
+        Version = Constants.VERSION,
         Desc = "get xrFrameState from xrWaitFrame hook",
-        DocumentationLink = "https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.5/manual/index.html"
+        DocumentationLink = "https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrFrameState.html"
         )]
 #endif
-    public class FrameTimeFeature : OpenXRFeature
+    public class FrameStateFeature : OpenXRFeature
     {
-        public const string featureId = "com.vrmc.frame_time";
+        public const string FEATURE_ID = Constants.AUTHOR_ID + ".frame_state";
 
         PFN_xrGetInstanceProcAddr mOldProc;
 
@@ -47,7 +46,7 @@ namespace OxrExtraFeatures
             XrBool32           shouldRender;
         } XrFrameState;*/
         [StructLayout(LayoutKind.Sequential)]
-        internal struct XrFrameState
+        public struct XrFrameState
         {
             int stype;
             IntPtr next;
@@ -60,11 +59,12 @@ namespace OxrExtraFeatures
             XrSession                                   session,
             const XrFrameWaitInfo*                      frameWaitInfo,
             XrFrameState*                               frameState);*/
-        internal delegate int Type_xrWaitFrame(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state);
+        internal delegate XrResult Type_xrWaitFrame(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state);
         Type_xrWaitFrame mOldWaitFrame;
 
-        long frame_time = 0;
-        public long FrameTime => frame_time;
+        XrFrameState state_;
+        public XrFrameState State => state_;
+
         List<Delegate> callbacks = new List<Delegate>();
 
         [MonoPInvokeCallback(typeof(PFN_xrGetInstanceProcAddr))]
@@ -98,15 +98,16 @@ namespace OxrExtraFeatures
         }
 
         [MonoPInvokeCallback(typeof(Type_xrWaitFrame))]
-        int xrWaitFrame_HOOK_STATIC(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state)
+        XrResult xrWaitFrame_HOOK_STATIC(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state)
         {
-            return xrWaitFrame_HOOK(session, waitInfo, ref state);
+            var retVal = xrWaitFrame_HOOK(session, waitInfo, ref state);
+            return retVal;
         }
 
-        int xrWaitFrame_HOOK(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state)
+        XrResult xrWaitFrame_HOOK(ulong session, in XrFrameWaitInfo waitInfo, ref XrFrameState state)
         {
-            int retVal = mOldWaitFrame(session, waitInfo, ref state);
-            frame_time = state.predictedDisplayTime;
+            var retVal = mOldWaitFrame(session, waitInfo, ref state);
+            state_ = state;
             return retVal;
         }
 

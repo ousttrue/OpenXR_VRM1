@@ -8,13 +8,13 @@ namespace Vrm10XR
     [DisallowMultipleComponent]
     public class FaceTracking : MonoBehaviour
     {
-        FrameTimeFeature frame_;
+        FrameStateFeature frame_;
 
         FaceTrackingFeature faceTracking_;
         FaceTracker faceTracker_;
 
         [SerializeField]
-        UnityEvent<float[]> FaceWeightsUpdated;
+        UnityEvent<long, float[]> FaceWeightsUpdated;
 
         static bool TryGetFeature<T>(out T feature) where T : UnityEngine.XR.OpenXR.Features.OpenXRFeature
         {
@@ -27,7 +27,6 @@ namespace Vrm10XR
             return true;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             if (!TryGetFeature(out frame_))
@@ -61,13 +60,13 @@ namespace Vrm10XR
 
         void Update()
         {
-            var time = frame_.FrameTime;
+            var time = frame_.State.predictedDisplayTime;
             var space = frame_.CurrentAppSpace;
             if (faceTracker_ != null)
             {
                 if (faceTracker_.TryGetFaceExpressionWeights(time, space, out var weights, out var confidences))
                 {
-                    FaceWeightsUpdated.Invoke(weights);
+                    FaceWeightsUpdated.Invoke(time, weights);
                 }
             }
         }

@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: XR_FB_eye_tracking_social
-  version: 0.0.1
-  featureIdInternal: com.vrmc.eye_tracking
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.eye_tracking
   openxrExtensionStrings: XR_FB_eye_tracking_social
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &-8467827824496580374
@@ -34,10 +34,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 0
   nameUi: XR_FB_body_tracking
-  version: 0.0.1
+  version: 0.2.0
   featureIdInternal: com.ousttrue.bodytracking
   openxrExtensionStrings: XR_FB_body_tracking
-  company: VRMC
+  company: 
+  priority: 0
+  required: 0
+--- !u!114 &-8036408909431413113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d924a1cb67f7174b8f06202cee6a1bd, type: 3}
+  m_Name: FrameStateFeature Android
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: 
+  version: 
+  featureIdInternal: 
+  openxrExtensionStrings: 
+  company: 
   priority: 0
   required: 0
 --- !u!114 &-7681721955874433736
@@ -78,7 +98,7 @@ MonoBehaviour:
   - {fileID: 6106685181994740932}
   - {fileID: -9112015625478854671}
   - {fileID: 7262134019476929821}
-  - {fileID: -3215108077903657773}
+  - {fileID: 842692695449770317}
   - {fileID: -2993982444574683523}
   - {fileID: -3321686995878956161}
   - {fileID: 3857421739526020276}
@@ -291,6 +311,7 @@ MonoBehaviour:
   m_Name: FrameTimeFeature Standalone
   m_EditorClassIdentifier: 
   m_enabled: 1
+  <failedInitialization>k__BackingField: 0
   nameUi: Frame time
   version: 0.1.0
   featureIdInternal: com.vrmc.frame_time
@@ -298,6 +319,7 @@ MonoBehaviour:
   company: VRMC
   priority: 0
   required: 0
+  frame_time: 0
 --- !u!114 &-3060524684698381238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +459,26 @@ MonoBehaviour:
   company: VRMC
   priority: 0
   required: 0
+--- !u!114 &842692695449770317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d924a1cb67f7174b8f06202cee6a1bd, type: 3}
+  m_Name: FrameStateFeature Standalone
+  m_EditorClassIdentifier: 
+  m_enabled: 0
+  nameUi: Frame time
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.frame_time
+  openxrExtensionStrings: 
+  company: 
+  priority: 0
+  required: 0
 --- !u!114 &1897846336074149155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,6 +615,7 @@ MonoBehaviour:
   m_Name: FrameTimeFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
+  <failedInitialization>k__BackingField: 0
   nameUi: Frame time
   version: 0.1.0
   featureIdInternal: com.vrmc.frame_time
@@ -580,6 +623,7 @@ MonoBehaviour:
   company: VRMC
   priority: 0
   required: 0
+  frame_time: 0
 --- !u!114 &4940674759226019450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,10 +743,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: XR_FB_face_tracking
-  version: 0.0.1
-  featureIdInternal: com.vrmc.face_tracking
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.face_tracking
   openxrExtensionStrings: XR_FB_face_tracking
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &7796469836042378828
@@ -723,7 +767,7 @@ MonoBehaviour:
   - {fileID: 1897846336074149155}
   - {fileID: 7981112421543693561}
   - {fileID: 8946495255372722369}
-  - {fileID: 4403095223282766105}
+  - {fileID: 0}
   - {fileID: -5951048803377158039}
   - {fileID: -5375596013745745416}
   - {fileID: -1295350434354999882}
@@ -747,10 +791,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 0
   nameUi: XR_FB_eye_tracking_social
-  version: 0.0.1
-  featureIdInternal: com.vrmc.eye_tracking
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.eye_tracking
   openxrExtensionStrings: XR_FB_eye_tracking_social
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &8588410318514220060
@@ -767,10 +811,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: XR_FB_body_tracking
-  version: 0.0.1
+  version: 0.2.0
   featureIdInternal: com.ousttrue.bodytracking
   openxrExtensionStrings: XR_FB_body_tracking
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &8946495255372722369
@@ -787,10 +831,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 0
   nameUi: XR_FB_face_tracking
-  version: 0.0.1
-  featureIdInternal: com.vrmc.face_tracking
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.face_tracking
   openxrExtensionStrings: XR_FB_face_tracking
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &9100854377996474821

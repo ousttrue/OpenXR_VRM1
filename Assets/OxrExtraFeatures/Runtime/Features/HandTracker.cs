@@ -4,8 +4,15 @@ using UnityEngine;
 namespace OxrExtraFeatures
 {
     using static HandTrackingFeature;
+
     public class HandTracker : IDisposable
     {
+        // UnityEngine.Events.UnityEvent<long, HandTrackingFeature.XrHandJointLocationEXT[]>
+        public interface IReceiver
+        {
+            void OnReceived(long time, XrHandJointLocationEXT[] joints);
+        }
+
         HandTrackingFeature feature_;
         ulong handle_ = 0;
 

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace OxrExtraFeatures
 {
-    class ArrayPin : IDisposable
+    public class ArrayPin : IDisposable
     {
         GCHandle pinnedJointArray;
 

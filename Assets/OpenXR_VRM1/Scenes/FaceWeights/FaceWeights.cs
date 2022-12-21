@@ -1,10 +1,11 @@
+using OxrExtraFeatures;
 using UnityEngine;
 using static OxrExtraFeatures.FaceTrackingFeature;
 
 
 namespace Vrm10XR
 {
-    class FaceWeights : MonoBehaviour
+    class FaceWeights : MonoBehaviour, FaceTracker.IReceiver
     {
         const float SIZE = 0.1f;
         const float START = -8 * SIZE;
@@ -31,7 +32,7 @@ namespace Vrm10XR
             }
         }
 
-        public void OnWeightsUpdated(float[] weights)
+        public void OnReceived(long time, float[] weights)
         {
             // goto main camera forward
             transform.position = Camera.main.transform.position + Camera.main.transform.forward;
