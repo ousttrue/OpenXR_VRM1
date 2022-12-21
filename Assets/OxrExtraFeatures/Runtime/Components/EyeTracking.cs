@@ -27,7 +27,6 @@ namespace Vrm10XR
             return true;
         }
 
-        // Start is called before the first frame update
         void Start()
         {
             if (!TryGetFeature(out frame_))
@@ -61,7 +60,7 @@ namespace Vrm10XR
 
         void Update()
         {
-            var time = frame_.FrameTime;
+            var time = frame_.State.predictedDisplayTime;
             var space = frame_.CurrentAppSpace;
             if (eyeTracker_ != null)
             {

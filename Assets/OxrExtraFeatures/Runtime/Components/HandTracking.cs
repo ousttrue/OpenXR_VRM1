@@ -65,10 +65,9 @@ namespace Vrm10XR
             rightHandTracker_ = null;
         }
 
-        // Update is called once per frame
         void Update()
         {
-            var time = frame_.FrameTime;
+            var time = frame_.State.predictedDisplayTime;
             var space = frame_.CurrentAppSpace;
             if (leftHandTracker_ != null)
             {

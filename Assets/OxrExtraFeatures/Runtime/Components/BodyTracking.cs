@@ -65,32 +65,12 @@ namespace Vrm10XR
 
         void OnSkeleton(BodyTrackingFeature.XrBodySkeletonJointFB[] joints)
         {
-            SkeletonUpdated.Invoke(frame_.FrameTime, joints);
-            // if (skeletonJoints_ == null)
-            // {
-            //     skeletonJoints_ = new Transform[joints.Length];
-            // }
-
-            // for (int i = 0; i < skeletonJoints_.Length; ++i)
-            // {
-            //     if (skeletonJoints_[i] == null)
-            //     {
-            //         var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            //         go.name = $"{(BodyTrackingFeature.XrBodyJointFB)i}";
-            //         skeletonJoints_[i] = go.transform;
-            //         skeletonJoints_[i].SetParent(transform);
-            //         skeletonJoints_[i].localScale = new Vector3(0.02f, 0.02f, 0.02f);
-            //     }
-
-            //     skeletonJoints_[i].localRotation = joints[i].pose.orientation.ToUnity();
-            //     skeletonJoints_[i].localPosition = joints[i].pose.position.ToUnity();
-            // }
+            SkeletonUpdated.Invoke(frame_.State.predictedDisplayTime, joints);
         }
 
-        // Update is called once per frame
         void Update()
         {
-            var time = frame_.FrameTime;
+            var time = frame_.State.predictedDisplayTime;
             var space = frame_.CurrentAppSpace;
             if (bodyTracker_ != null)
             {
