@@ -53,9 +53,9 @@ MonoBehaviour:
   m_Name: FrameStateFeature Android
   m_EditorClassIdentifier: 
   m_enabled: 0
-  nameUi: 
-  version: 
-  featureIdInternal: 
+  nameUi: Frame state
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.frame_state
   openxrExtensionStrings: 
   company: 
   priority: 0
@@ -191,10 +191,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 0
   nameUi: XR_EXT_hand_tracking
-  version: 0.1.0
-  featureIdInternal: com.vrmc.hand_tracking
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.hand_tracking
   openxrExtensionStrings: XR_EXT_hand_tracking
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &-5375596013745745416
@@ -354,10 +354,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_enabled: 1
   nameUi: XR_EXT_hand_tracking
-  version: 0.1.0
-  featureIdInternal: com.vrmc.hand_tracking
+  version: 0.2.0
+  featureIdInternal: com.ousttrue.hand_tracking
   openxrExtensionStrings: XR_EXT_hand_tracking
-  company: VRMC
+  company: 
   priority: 0
   required: 0
 --- !u!114 &-2809995876302111369
@@ -471,10 +471,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d924a1cb67f7174b8f06202cee6a1bd, type: 3}
   m_Name: FrameStateFeature Standalone
   m_EditorClassIdentifier: 
-  m_enabled: 0
-  nameUi: Frame time
+  m_enabled: 1
+  nameUi: Frame state
   version: 0.2.0
-  featureIdInternal: com.ousttrue.frame_time
+  featureIdInternal: com.ousttrue.frame_state
   openxrExtensionStrings: 
   company: 
   priority: 0
@@ -767,7 +767,7 @@ MonoBehaviour:
   - {fileID: 1897846336074149155}
   - {fileID: 7981112421543693561}
   - {fileID: 8946495255372722369}
-  - {fileID: 0}
+  - {fileID: -8036408909431413113}
   - {fileID: -5951048803377158039}
   - {fileID: -5375596013745745416}
   - {fileID: -1295350434354999882}
