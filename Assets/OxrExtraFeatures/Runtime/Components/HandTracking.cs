@@ -8,7 +8,7 @@ namespace Vrm10XR
     [DisallowMultipleComponent]
     public class HandTracking : MonoBehaviour
     {
-        FrameTimeFeature frame_;
+        FrameStateFeature frame_;
 
         HandTrackingFeature handTracking_;
         HandTracker leftHandTracker_;

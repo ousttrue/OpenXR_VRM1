@@ -8,7 +8,7 @@ namespace Vrm10XR
     [DisallowMultipleComponent]
     public class FaceTracking : MonoBehaviour
     {
-        FrameTimeFeature frame_;
+        FrameStateFeature frame_;
 
         FaceTrackingFeature faceTracking_;
         FaceTracker faceTracker_;

@@ -8,7 +8,7 @@ namespace Vrm10XR
     [DisallowMultipleComponent]
     public class EyeTracking : MonoBehaviour
     {
-        FrameTimeFeature frame_;
+        FrameStateFeature frame_;
 
         EyeTrackingFeature eyeTracking_;
         EyeTracker eyeTracker_;

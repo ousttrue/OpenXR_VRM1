@@ -8,7 +8,7 @@ namespace Vrm10XR
     [DisallowMultipleComponent]
     public class BodyTracking : MonoBehaviour
     {
-        FrameTimeFeature frame_;
+        FrameStateFeature frame_;
 
         BodyTrackingFeature bodyTracking_;
         BodyTracker bodyTracker_;

@@ -8,20 +8,19 @@ using UnityEngine.XR.OpenXR;
 namespace OxrExtraFeatures
 {
 #if UNITY_EDITOR
-    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = xr_extension,
+    [UnityEditor.XR.OpenXR.Features.OpenXRFeature(UiName = XR_EXTENSION,
         BuildTargetGroups = new[] {
             UnityEditor.BuildTargetGroup.Standalone, UnityEditor.BuildTargetGroup.Android },
-        Company = "VRMC",
-        Desc = "Enable face tracking in unity",
+        Desc = XR_EXTENSION,
         DocumentationLink = "https://developer.oculus.com/documentation/native/android/move-face-tracking/",
-        OpenxrExtensionStrings = xr_extension,
-        Version = "0.0.1",
-        FeatureId = featureId)]
+        OpenxrExtensionStrings = XR_EXTENSION,
+        Version = Constants.VERSION,
+        FeatureId = FEATURE_ID)]
 #endif
     public class FaceTrackingFeature : OpenXRFeature
     {
-        public const string featureId = "com.vrmc.face_tracking";
-        public const string xr_extension = "XR_FB_face_tracking";
+        public const string FEATURE_ID = Constants.AUTHOR_ID + ".face_tracking";
+        public const string XR_EXTENSION = "XR_FB_face_tracking";
 
         public enum XrFaceExpressionFB
         {
@@ -197,9 +196,9 @@ namespace OxrExtraFeatures
         override protected bool OnInstanceCreate(ulong xrInstance)
         {
             instance_ = xrInstance;
-            if (!OpenXRRuntime.IsExtensionEnabled(xr_extension))
+            if (!OpenXRRuntime.IsExtensionEnabled(XR_EXTENSION))
             {
-                Debug.LogWarning($"{xr_extension} is not enabled.");
+                Debug.LogWarning($"{XR_EXTENSION} is not enabled.");
                 // Return false here to indicate the system should disable your feature for this execution.  
                 // Note that if a feature is marked required, returning false will cause the OpenXRLoader to abort and try another loader.
                 return false;
@@ -216,7 +215,7 @@ namespace OxrExtraFeatures
         override protected void OnSessionBegin(ulong session)
         {
             session_ = session;
-            Debug.Log($"{featureId}: {instance_}.{session_}");
+            Debug.Log($"{FEATURE_ID}: {instance_}.{session_}");
 
             var getInstanceProcAddr = Marshal.GetDelegateForFunctionPointer<PFN_xrGetInstanceProcAddr>(xrGetInstanceProcAddr);
             Func<string, IntPtr> getAddr = (string name) =>
