@@ -16,7 +16,7 @@ namespace OxrExtraFeatures
         FeatureId = FEATURE_ID,
         Version = Constants.VERSION,
         Desc = "get xrFrameState from xrWaitFrame hook",
-        DocumentationLink = "https://docs.unity3d.com/Packages/com.unity.xr.openxr@1.5/manual/index.html"
+        DocumentationLink = "https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrFrameState.html"
         )]
 #endif
     public class FrameStateFeature : OpenXRFeature
