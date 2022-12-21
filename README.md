@@ -6,7 +6,7 @@ The OpenXR feature implementation is based on <https://github.com/joemarshall/op
 
 UPM git package.
 
-`https://github.com/ousttrue/OpenXR_VRM1.git?path=Assets/OxrExtraFeatures#v0.2.0`
+`https://github.com/ousttrue/OpenXR_VRM1.git?path=Assets/OxrExtraFeatures#v0.2.1`
 
 Implement 4 OpenXR extensions.
 
