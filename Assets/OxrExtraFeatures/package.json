@@ -1,7 +1,7 @@
 {
     "name": "com.ousttrue.oxr_extra_features",
     "displayName": "OpenXR Extra Features",
-    "version": "0.1.0",
+    "version": "0.2.2",
     "unity": "2021.3",
     "description": "hand(EXT), body(FB), eye(FB pro), face(FB pro) tracking",
     "author": {
