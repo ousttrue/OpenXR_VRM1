@@ -1,6 +1,10 @@
 {
   "dependencies": {
     "com.unity.collab-proxy": "1.17.7",
+    "com.vrmc.vrmshaders": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRMShaders#v0.110.0",
+    "com.vrmc.gltf": "https://github.com/vrm-c/UniVRM.git?path=/Assets/UniGLTF#v0.110.0",
+    "com.vrmc.univrm": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM#v0.110.0",
+    "com.vrmc.vrm": "https://github.com/vrm-c/UniVRM.git?path=/Assets/VRM10#v0.110.0",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.16",
     "com.unity.ide.visualstudio": "2.0.16",
@@ -11,12 +15,6 @@
     "com.unity.timeline": "1.6.4",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.7.8",
-    "com.unity.xr.management": "4.2.1",
-    "com.unity.xr.openxr": "1.5.3",
-    "com.vrmc.gltf": "https://github.com/ousttrue/UniVRM.git?path=/Assets/UniGLTF#fix_oxr_body",
-    "com.vrmc.univrm": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM#fix_oxr_body",
-    "com.vrmc.vrm": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRM10#fix_oxr_body",
-    "com.vrmc.vrmshaders": "https://github.com/ousttrue/UniVRM.git?path=/Assets/VRMShaders#fix_oxr_body",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -47,6 +45,8 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.unity.xr.openxr": "1.5.3",
+    "com.unity.xr.management": "4.2.1"
   }
 }

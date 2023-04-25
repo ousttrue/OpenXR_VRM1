@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UniVRM10;
 using static OxrExtraFeatures.BodyTrackingFeature;
@@ -194,51 +196,110 @@ namespace Vrm10XR
         // rename .vrm to .txt and set
         [SerializeField]
         TextAsset VRM1Binary;
+
         Vrm10Instance vrm_;
+        (INormalizedPoseApplicable, ITPoseProvider) sink_;
 
         bool isLeft_;
+
+        Transform[] objects_;
+        Transform skeletonRoot_;
+        (INormalizedPoseProvider, ITPoseProvider) src_;
+        UniHumanoid.Humanoid humanoid_;
 
         // Start is called before the first frame update
         async void Start()
         {
-            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes, ControlRigGenerationOption.Vrm0XCompatibleWithXR_FB_body_tracking);
+            vrm_ = await VRM1Loader.LoadAsync(VRM1Binary.bytes, ControlRigGenerationOption.Generate);
             vrm_.transform.SetParent(transform, false);
 
             // VR用 FirstPerson 設定
             await vrm_.Vrm.FirstPerson.SetupAsync(vrm_.gameObject, new VRMShaders.RuntimeOnlyAwaitCaller());
             // lookat
-            vrm_.LookAtTargetType = VRM10ObjectLookAt.LookAtTargetTypes.SetYawPitch;
+            vrm_.LookAtTargetType = VRM10ObjectLookAt.LookAtTargetTypes.YawPitchValue;
+
+            sink_ = (vrm_.Runtime.ControlRig, vrm_.Runtime.ControlRig);
+
+            // skeleton
+            objects_ = new Transform[(int)XrBodyJointFB.XR_BODY_JOINT_COUNT_FB];
+            for (int i = 0; i < objects_.Length; ++i)
+            {
+                var value = (XrBodyJointFB)i;
+                var t = new GameObject($"{value}").transform;
+                {
+                    var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    cube.transform.SetParent(t);
+                    cube.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
+                }
+                t.SetParent(transform);
+                objects_[i] = t;
+            }
+            humanoid_ = objects_[0].gameObject.AddComponent<UniHumanoid.Humanoid>();
+            humanoid_.AssignBones(JointToBone.Select((fb_unity) => (fb_unity.Item2, objects_[(int)fb_unity.Item1])));
         }
 
-        public void OnBodyUpdated(XrBodyJointLocationFB[] joints)
+        public void OnSkeletonUpdated(long time, XrBodySkeletonJointFB[] joints)
+        {
+            for (int i = 0; i < joints.Length; ++i)
+            {
+                var joint = joints[i];
+                if (joint.parentJoint >= 0 && joint.parentJoint < objects_.Length)
+                {
+                    objects_[i].SetParent(objects_[joint.parentJoint]);
+                }
+                // var JOINT_SIZE = 0.02f;
+                // objects_[i].localScale = new Vector3(JOINT_SIZE, JOINT_SIZE, JOINT_SIZE);
+                // convert OpenXR right handed to unity left handed !
+                objects_[i].position = joint.pose.position.ToUnity();
+                objects_[i].rotation = joint.pose.orientation.ToUnity();
+            }
+
+            var provider = new InitRotationPoseProvider(humanoid_.transform, humanoid_);
+            src_ = (provider, provider);
+        }
+
+        public void OnBodyUpdated(long Time, XrBodyJointLocationFB[] joints)
         {
             if (vrm_ == null)
             {
                 return;
             }
 
-            foreach (var (i, b) in JointToBone)
+            for (int i = 0; i < joints.Length; ++i)
             {
-                var joint = joints[(int)i];
-
-                var t = vrm_.Runtime.ControlRig.GetBoneTransform(b);
-                if (t != null)
-                {
-                    if (i == XrBodyJointFB.XR_BODY_JOINT_HIPS_FB)
-                    {
-                        if (vrm_.TryGetBoneTransform(b, out var bodyTransform))
-                        {
-                            // directory assign position
-                            t.position = joint.pose.position.ToUnity();
-                        }
-                    }
-                    t.rotation = joint.pose.orientation.ToUnity();
-                }
-                else
-                {
-                    // Debug.LogWarning($"{b} is null");
-                }
+                var t = objects_[i];
+                var joint = joints[i];
+                // t.
+                t.rotation = joint.pose.orientation.ToUnity();
             }
+
+            Retarget(src_, sink_);
+        }
+
+        static void Retarget(
+            (INormalizedPoseProvider Pose, ITPoseProvider TPose) source,
+            (INormalizedPoseApplicable Pose, ITPoseProvider TPose) sink)
+        {
+            foreach (var (head, parent) in sink.TPose.EnumerateBoneParentPairs())
+            {
+                var q = source.Pose.GetNormalizedLocalRotation(head, parent);
+                sink.Pose.SetNormalizedLocalRotation(head, q);
+            }
+
+            // scaling hips position
+            var scaling = sink.TPose.GetWorldTransform(HumanBodyBones.LeftUpperLeg).Value.Translation.y / source.TPose.GetWorldTransform(HumanBodyBones.LeftUpperLeg).Value.Translation.y;
+            var delta = source.Pose.GetRawHipsPosition() - source.TPose.GetWorldTransform(HumanBodyBones.Hips).Value.Translation;
+            sink.Pose.SetRawHipsPosition(sink.TPose.GetWorldTransform(HumanBodyBones.Hips).Value.Translation + delta * scaling);
+        }
+
+        static void EnforceTPose((INormalizedPoseApplicable Pose, ITPoseProvider TPose) sink)
+        {
+            foreach (var (bone, parent) in sink.TPose.EnumerateBoneParentPairs())
+            {
+                sink.Pose.SetNormalizedLocalRotation(bone, Quaternion.identity);
+            }
+
+            sink.Pose.SetRawHipsPosition(sink.TPose.GetWorldTransform(HumanBodyBones.Hips).Value.Translation);
         }
 
         static float ClampDegree(float deg)
@@ -255,7 +316,7 @@ namespace Vrm10XR
         }
 
         const float LOOK_FACTOR = 4.0f;
-        public void OnEyeUpdated(XrEyeGazeV2FB[] gazes)
+        public void OnEyeUpdated(long time, XrEyeGazeV2FB[] gazes)
         {
             if (vrm_ == null)
             {
@@ -266,10 +327,12 @@ namespace Vrm10XR
             var leftLocal = Quaternion.Inverse(Camera.main.transform.rotation) * leftRotation;
             var leftEuler = leftLocal.eulerAngles;
 
-            vrm_.Runtime.LookAt.SetLookAtYawPitch(ClampDegree(leftEuler.y) * LOOK_FACTOR, ClampDegree(-leftEuler.x) * LOOK_FACTOR);
+            vrm_.Runtime.LookAt.SetYawPitchManually(
+                ClampDegree(leftEuler.y) * LOOK_FACTOR,
+                ClampDegree(-leftEuler.x) * LOOK_FACTOR);
         }
 
-        public void OnFaceUpdated(float[] weights)
+        public void OnFaceUpdated(long time, float[] weights)
         {
             if (vrm_ == null)
             {
